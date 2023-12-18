@@ -25,7 +25,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::post('/login', [LoginController::class, 'check']);
 
-Route::post('/logout',[LoginController::class, 'logout']);
+Route::post('/logout',[LoginController::class, 'logout']); 
 
 
 // Category Routes
