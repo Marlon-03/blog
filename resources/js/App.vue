@@ -9,9 +9,9 @@
             <router-link :to="{name: 'About'}">About</router-link>
             <router-link :to="{name: 'About'}">About</router-link>  
             <router-link :to="{name: 'Contact'}">Contact</router-link>
-            <router-link :to="{name: 'Login'}" v-if="!loggedIn">Log In</router-link>
-            <router-link :to="{name: 'Register'}" v-if="!loggedIn">Register</router-link>
-            <router-link :to="{name: 'Dashboard'}" v-if="loggedIn">Dashboard</router-link>
+            <router-link :to="{name: 'Login'}">Log In</router-link>
+            <router-link :to="{name: 'Register'}">Register</router-link>
+            <router-link :to="{name: 'Dashboard'}">Dashboard</router-link>
         </div>
     </div>
 
