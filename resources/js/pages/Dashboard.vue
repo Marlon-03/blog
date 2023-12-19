@@ -9,7 +9,7 @@
 
 <script>
 export default{
-    emits: ['updateNavbar'],
+    emits: ['showNavbar'], 
     data(){
         return{
             name: '',

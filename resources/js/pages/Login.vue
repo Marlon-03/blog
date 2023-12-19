@@ -13,6 +13,7 @@
 
 <script>
 export default {
+    emits: ['showNavbar'],
     data(){
         return{
             user:{
@@ -23,13 +24,12 @@ export default {
     },
     methods:{
         saveData() {
-
             axios.post('/api/login', this.user)
                 .then(response => {
                     console.log('Response:', response.data);
                     this.$router.push({name: 'Dashboard'});
                     localStorage.setItem('authenticated', true);
-                    this.$emit('updateNavbar')
+                    this.$emit('showNavbar') // Emit the event
                 })
                 .catch(error => {
                     console.error('Error:', error);
