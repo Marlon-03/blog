@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{name: 'CategoriesList'}">Back</router-link>
+    <router-link :to="{name: 'Dashboard'}">Back</router-link>
   <form @submit.prevent="submitCategory">
     <label>Category Name</label>
     <input type="text" v-model="category.name" id="name">

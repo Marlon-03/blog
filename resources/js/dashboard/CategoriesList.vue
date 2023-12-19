@@ -1,5 +1,5 @@
 <template>
-
+<router-link :to="{name: 'Dashboard'}">Back</router-link>
    <table class="table-auto">
   <thead>
     <tr>

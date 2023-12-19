@@ -5,25 +5,41 @@
         </div>
         <div className="space-x-10 text-gray-200">
             <router-link :to="{name: 'Home'}">Home</router-link>
+            <router-link :to="{name: 'Blog'}">Blog</router-link>
             <router-link :to="{name: 'About'}">About</router-link>
-            <router-link :to="{name: 'About'}">About</router-link>  
             <router-link :to="{name: 'Contact'}">Contact</router-link>
-            <router-link :to="{name: 'Login'}" @click="handleLoginClick">Log In</router-link>
-            <router-link :to="{name: 'Register'}" @click="handleRegisterClick">Register</router-link>
-            <router-link :to="{name: 'Dashboard'}">Dashboard</router-link>
+            <router-link :to="{name: 'Login'}" v-if="!isLoggedIn" @click="handleLoginClick">Log In</router-link>
+            <router-link :to="{name: 'Register'}" v-if="!isLoggedIn" @click="handleRegisterClick">Register</router-link>
+            <router-link :to="{name: 'Dashboard'}" v-if="isLoggedIn">Dashboard</router-link>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            isLoggedIn: false,
+        };
+    },
+    created() {
+        this.checkAuthentication();
+    },
+    watch: {
+        '$route': function() {
+            this.checkAuthentication();
+        },
+    },
     methods: {
-  handleLoginClick() {
-    this.$emit('handleLoginClick');
-  },
-  handleRegisterClick() {
-    this.$emit('handleRegisterClick');
-  },
-},
+        handleLoginClick() {
+            this.$emit('handleLoginClick');
+        },
+        handleRegisterClick() {
+            this.$emit('handleRegisterClick');
+        },
+        checkAuthentication() {
+            this.isLoggedIn = !!localStorage.getItem('authenticated');
+        },
+    },
 };
 </script>
