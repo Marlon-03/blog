@@ -13,7 +13,9 @@
             <option value="">Coding</option>
             <option value="">Lifestyle</option>
             <option value="">Sports</option>
-            
         </select>
+
+        <label for="">Content</label>
+        
     </form>
 </template>
