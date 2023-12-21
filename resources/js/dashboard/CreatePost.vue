@@ -15,7 +15,18 @@
             <option value="">Sports</option>
         </select>
 
-        <label for="">Content</label>
+        <QuillEditor theme="snow" />
         
     </form>
 </template>
+
+<script>
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
+export default {
+  components: {
+    QuillEditor
+  }
+}
+</script>
