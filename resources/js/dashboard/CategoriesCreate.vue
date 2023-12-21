@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  emits: ['showNavbar'],
   data() {
     return {
       category: {
