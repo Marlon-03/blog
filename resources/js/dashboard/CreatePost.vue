@@ -1,6 +1,6 @@
 <template>
     <h1>Create Post</h1>
-    <form>
+    <form className="flex flex-col">
         <label for="">Title</label>
         <input type="text" id="title">
         
@@ -16,6 +16,7 @@
         </select>
 
         <QuillEditor theme="snow" />
+        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
         
     </form>
 </template>
@@ -25,6 +26,7 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 export default {
+  emits: ['showNavbar'],
   components: {
     QuillEditor
   }
