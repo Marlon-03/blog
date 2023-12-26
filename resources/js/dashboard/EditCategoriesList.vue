@@ -15,6 +15,7 @@
   
   <script>
   export default {
+    emits: ['showNavbar'],
     props: ['id'],
     data() {
       return {
