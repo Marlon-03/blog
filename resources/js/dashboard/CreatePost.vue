@@ -19,7 +19,7 @@
         </select>
 
         <label for="content">Content</label>
-        <quill-editor v-model:content="post.content" contentType="html" />
+        <quill-editor v-model:content="post.body" contentType="html" />
         
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
       </div>
@@ -41,7 +41,7 @@ export default {
         title: '',
         file: null,
         category_id: '',
-        content: ''
+        body: ''
       },
       url: '',
       categories: []
@@ -52,9 +52,19 @@ export default {
       const file = e.target.files[0];
       this.post.file = file;
       this.url = URL.createObjectURL(file);
+      URL.revokeObjectURL(file);
     },
     submitPost() {
-      console.log(this.post);
+      axios.post('/api/posts',this.post,{
+        headers: {'content-type': 'multipart/form-data'},
+      })
+        .then(() =>{
+          this.post = {};
+          this.url = null;
+          this.post.category_id = '';
+      })
+        .catch((error)=>
+        this.errors = error.response.data.errors);
     }
   },
   mounted() {

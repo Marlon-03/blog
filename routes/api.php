@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,3 +39,6 @@ Route::middleware('auth:sanctum')->put('/categories/{id}', [CategoryController::
 Route::middleware('auth:sanctum')->delete('/categories/{id}', [CategoryController::class, 'destroy']);
 
 Route::get('categories', [CategoryController::class, 'index']);
+
+// Post Routes
+Route::middleware('auth:sanctum')->post('/posts', [PostController::class, 'store']);
