@@ -1,37 +1,78 @@
 <template>
+  <div>
     <h1>Create Post</h1>
-    <form className="flex flex-col">
+    <form @submit.prevent="submitPost" class="flex flex-row">
       <div>
-        <label for="">Title</label>
-        <input type="text" id="title">
+        <label for="title">Title</label>
+        <input type="text" id="title" v-model="post.title">
         
-        <label for="">Image</label>
-        <input type="file" id="image">
+        <label for="image">Image</label>
+        <input type="file" id="image" @change="grabFile">
+        <div class="preview">
+          <img :src="url" alt="">
+        </div>
 
-        <label for="">Category</label>
-        <select name="category_id" id="categories">
-          <option selected disabled>Selected Options</option>
-          <option value="">Coding</option>
-          <option value="">Lifestyle</option>
-          <option value="">Sports</option>
+        <label for="categories">Category</label>
+        <select v-model="post.category_id" id="categories">
+          <option disabled value="">Select Options</option>
+          <option :value="category.id" v-for="category in categories" :key="category.id">{{category.name}}</option>
         </select>
 
-
-        <QuillEditor theme="snow" />
+        <label for="content">Content</label>
+        <quill-editor v-model:content="post.content" contentType="html" />
         
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
       </div>
     </form>
+  </div>
 </template>
 
 <script>
-import { QuillEditor } from '@vueup/vue-quill'
+import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 export default {
-  emits: ['showNavbar'],
   components: {
     QuillEditor
+  },
+  data() {
+    return {
+      post: {
+        title: '',
+        file: null,
+        category_id: '',
+        content: ''
+      },
+      url: '',
+      categories: []
+    };
+  },
+  methods: {
+    grabFile(e) {
+      const file = e.target.files[0];
+      this.post.file = file;
+      this.url = URL.createObjectURL(file);
+    },
+    submitPost() {
+      console.log(this.post);
+    }
+  },
+  mounted() {
+    // Fetch categories
+    axios.get('/api/categories')
+      .then((response) => {
+        this.categories = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
-}
+};
 </script>
+
+<style scoped>
+.preview img {
+  max-width: 100%;
+  max-height: 120px;
+}
+</style>
