@@ -57,11 +57,15 @@ export default {
     submitPost() {
       axios.post('/api/posts',this.post,{
         headers: {'content-type': 'multipart/form-data'},
+        
       })
         .then(() =>{
           this.post = {};
           this.url = null;
+          this.post.file = null;
           this.post.category_id = '';
+          this.post.body = '';
+          console.log('post created');
       })
         .catch((error)=>
         this.errors = error.response.data.errors);
