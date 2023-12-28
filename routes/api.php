@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,3 +43,5 @@ Route::get('categories', [CategoryController::class, 'index']);
 
 // Post Routes
 Route::middleware('auth:sanctum')->post('/posts', [PostController::class, 'store']);
+
+Route::get('home-posts', [HomeController::class, 'index']);
