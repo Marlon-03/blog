@@ -27,7 +27,7 @@ export default{
             axios.post('/api/logout').then((response)=>{
                 this.$router.push({name: 'Home'});
                 localStorage.removeItem('authenticated');
-                this.$emit('updateNavbar');
+                this.$emit('showNavbar');
             }).catch((error)=>{
                 console.log(error);
             })

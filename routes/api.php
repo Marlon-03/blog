@@ -41,7 +41,8 @@ Route::middleware('auth:sanctum')->delete('/categories/{id}', [CategoryControlle
 
 Route::get('categories', [CategoryController::class, 'index']);
 
-// Post Routes
+// Posts
 Route::middleware('auth:sanctum')->post('/posts', [PostController::class, 'store']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('home-posts', [HomeController::class, 'index']);
