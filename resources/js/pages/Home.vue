@@ -9,7 +9,7 @@
             </p>
             <h4>
                 <a href="single-blog.html"></a>
-                <router-link :to="{name: 'SingleBlog', params: {slug: post.slug},}">{{ post.title }}</router-link>"
+                <router-link :to="{name: 'SingleBlog', params: {slug: post.slug},}">{{ post.title }}</router-link>
             </h4>
         </div>
 

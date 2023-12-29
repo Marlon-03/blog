@@ -6,7 +6,7 @@
             <span>Written by{{ post.user }}</span>
         </p>
         <img :src="`${post.imagePath}`" alt="">
-        <p>{{ post.body }}</p>
+        {{ post.body }}
     </section>
 </template>
 

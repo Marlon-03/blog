@@ -19,8 +19,8 @@
         </select>
 
         <label for="content">Content</label>
-        <quill-editor v-model:content="post.body" contentType="html" />
-        
+        <quill-editor v-model:content="post.body" contentType="text" />
+
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
       </div>
     </form>
@@ -80,7 +80,8 @@ export default {
       .catch((error) => {
         console.error(error);
       });
-  }
+  },
+
 };
 </script>
 
