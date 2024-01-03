@@ -15,7 +15,8 @@
             <option value="">Sports</option>
         </select>
 
-        <QuillEditor theme="snow" />
+        <label for="">Body</label>
+        <quill-editor theme="snow" v-model:content="post.body" contentType="text" />
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
         
     </form>
@@ -30,6 +31,12 @@ export default {
   emits: ['showNavbar'],
   components: {
     QuillEditor
-  }
+  },
+  data(){
+      return{
+          posts:{}
+          }
+  },
+
 }
 </script>
