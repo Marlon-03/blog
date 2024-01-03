@@ -5,7 +5,7 @@
             <img :src="post.imagePath" alt="">
             <p>
             {{ post.created_at }}
-            <span>Written by{{ post.user }}</span>
+            <span>Written by {{ post.user }}</span>
             </p>
             <h4>
                 <a href="single-blog.html"></a>

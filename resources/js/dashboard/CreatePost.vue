@@ -52,8 +52,23 @@ export default {
           const file = e.target.files[0];
           this.posts.file = file;
           this.url = URL.createObjectURL(file);
+          URL.revokeObjectURL(file);
       },
+      submitPost(){
+        axios.post('/api/posts', this.posts,{
+            headers: {'Content-Type': 'multipart/form-data'}
+        })
+        .then(() =>{
+          this.posts = {};
+          this.url = null;
+          this.posts.category_id = '';
+          console.log('Post created successfully');
+        }
+        ).catch((error) => {
+            console.log(error);
+      });
   },
+},
   mounted() {
         axios.get('/api/categories')
         .then((response) => {
@@ -61,9 +76,8 @@ export default {
         }).catch((error) => {
             console.log(error);
         });
-      }
-
-}
+      },
+    }
 </script>
 
 <style scoped>
