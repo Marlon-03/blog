@@ -1,22 +1,27 @@
 <template>
     <h1>Create Post</h1>
-    <form className="flex flex-col">
+    <form @submit.prevent="submitPost" className="flex flex-col">
         <label for="">Title</label>
-        <input type="text" id="title">
-        
+        <input type="text" v-model="posts.title" id="title">
+        <br/>
         <label for="">Image</label>
-        <input type="file" id="image">
+        <input type="file" @input="grabFile" id="image">
+        <div class="preview">
+          <img :src="url" alt="">
+        </div>
+        <br/>
 
         <label for="">Category</label>
-        <select name="category_id" id="categories">
-            <option selected disabled>Selected Options</option>
-            <option value="">Coding</option>
-            <option value="">Lifestyle</option>
-            <option value="">Sports</option>
+        <select v-model="posts.category_id"  id="categories">
+            <option disabled value="">Select Options</option>
+            <option :value="category.id" v-for="category in categories" :key="category.id">{{ category.name }}</option>
         </select>
+        <br/>
 
         <label for="">Body</label>
-        <quill-editor theme="snow" v-model:content="post.body" contentType="text" />
+        <quill-editor theme="snow" v-model:content="posts.body" contentType="text" />
+        <br/>
+
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
         
     </form>
@@ -34,9 +39,36 @@ export default {
   },
   data(){
       return{
-          posts:{}
+          posts:{
+            category_id: '',
+          },
+          url: '',
+          categories: [],
           }
   },
 
+  methods: {
+      grabFile(e){
+          const file = e.target.files[0];
+          this.posts.file = file;
+          this.url = URL.createObjectURL(file);
+      },
+  },
+  mounted() {
+        axios.get('/api/categories')
+        .then((response) => {
+            this.categories = response.data;
+        }).catch((error) => {
+            console.log(error);
+        });
+      }
+
 }
 </script>
+
+<style scoped>
+.preview img{
+    max-width: 100%;
+    max-height: 120px;
+}
+</style>
