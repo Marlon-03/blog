@@ -5,7 +5,7 @@
         <input type="text" v-model="posts.title" id="title">
         <br/>
         <label for="">Image</label>
-        <input type="file" @input="grabFile" id="image">
+        <input type="file" @input="grabFile" id="image" ref="fileInput">
         <div class="preview">
           <img :src="url" alt="">
         </div>
@@ -62,6 +62,8 @@ export default {
           this.posts = {};
           this.url = null;
           this.posts.category_id = '';
+          this.$refs.fileInput.value = ''; // Clear the file input
+          this.posts.body = ''; // Clear the Quill editor
           console.log('Post created successfully');
         }
         ).catch((error) => {
