@@ -16,12 +16,20 @@ export default{
     data(){
         return{
             post: {},
+            relatedPosts: []
         };
     },
     mounted(){
         axios.get('/api/posts/' + this.slug)
         .then((response) => {
             this.post = response.data.data;
+        }).catch((error) => {
+            console.log(error);
+        });
+
+        axios.get('/api/related-posts/' + this.slug)
+        .then((response) => {
+            this.relatedPosts = response.data.data;
         }).catch((error) => {
             console.log(error);
         });
