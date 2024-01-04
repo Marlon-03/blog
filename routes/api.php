@@ -7,7 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
-use 
+use App\Http\Controllers\RelatedPostController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -49,6 +49,6 @@ Route::get('posts', [PostController::class, 'index']);
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
-Route::get('related-posts/{post:slug}', [RelatedPostController::class, 'show']);
+Route::get('related-posts/{post:slug}', [RelatedPostController::class, 'index']);
 
 Route::get('home-posts', [HomeController::class, 'index']);
