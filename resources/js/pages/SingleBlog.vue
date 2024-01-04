@@ -12,14 +12,13 @@
     <section class="related">
         <p>Related Posts</p>
         <div class="related-posts">
-            <router link v-for="relatedPost in relatedPosts" :key="relatedPost.id"
-            :to="{name: 'SingleBlog', params: {slug: relatedPost.slug},}">
+            <router-link v-for="relatedPost in relatedPosts" :key="relatedPost.id"
+            :to="{name: 'SingleBlog', params: {slug: relatedPost.slug}}">
             <div class="related-post">
                 <img :src="`${relatedPost.imagePath}`" alt="" loading="lazy">
                 <h4>{{ relatedPost.title }}</h4>
             </div>
-
-            </router>
+            </router-link>
         </div>
 
     </section>
@@ -27,6 +26,7 @@
 
 <script>
 export default{
+    emits: ['showNavbar'],
     props: ['slug'],
     data(){
         return{

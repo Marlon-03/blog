@@ -1,7 +1,7 @@
 <template>
     <div>
       <Navbar v-if="shouldShowNavbar" @handleLoginClick="handleLoginClick" @handleRegisterClick="handleRegisterClick" />
-      <router-view @showNavbar="showNavbar"/>
+      <router-view @showNavbar="showNavbar" :key="$route.path"/>
     </div>
 </template>
 
