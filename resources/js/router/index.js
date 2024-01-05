@@ -84,11 +84,11 @@ const routes = [
         name: 'CreatePost',
         component: CreatePost,
     },
-    // {
-    //     path: '/postlists',
-    //     name: 'PostsList',
-    //     component: PostsList,
-    // }
+    {
+        path: '/postlists',
+        name: 'PostsList',
+        component: PostsList,
+    }
 
 ];
 
