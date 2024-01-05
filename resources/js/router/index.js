@@ -83,11 +83,13 @@ const routes = [
         path: '/posts/create',
         name: 'CreatePost',
         component: CreatePost,
+        meta: { requiresAuth: true },
     },
     {
         path: '/postlists',
         name: 'PostsList',
         component: PostsList,
+        meta: { requiresAuth: true },
     }
 
 ];
