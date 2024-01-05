@@ -34,7 +34,7 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/posts')
+        axios.get('/api/dashboard-posts')
         .then((response) => {
             this.posts = response.data.data;
         }).catch((error) => {

@@ -11,9 +11,7 @@ class PostController extends Controller
 {
     public function index() 
     {
-        $posts = Post::with('category')->latest()->get();
-
-        return PostResource::collection($posts);
+        return PostResource::collection(Post::latest()->get());
     }
     public function store(Request $request)
     {
