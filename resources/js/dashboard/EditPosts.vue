@@ -7,7 +7,7 @@
         <label for="">Image</label>
         <input type="file" @input="grabFile" id="image" ref="fileInput">
         <div class="preview">
-          <img :src="url" alt="">
+            <img v-bind:src="url" alt="">
         </div>
         <br/> 
 
@@ -43,7 +43,7 @@ export default {
           posts:{
             category_id: '',
           },
-          url: "",
+          url: '',
           categories: [],
           }
   },
@@ -81,12 +81,13 @@ export default {
         });
 
         axios.get('/api/posts/' + this.slug)
-        .then((response) => {
-            this.posts = response.data.data;
-            this.url = window.location.origin + "/storage/postsImages/" + response.data.data.imagePath;
-        }).catch((error) => {
-            console.log(error);
-        });
+    .then((response) => {
+        this.posts = response.data.data;
+        this.url = response.data.data.imagePath;
+        console.log(this.url);
+    }).catch((error) => {
+        console.log(error);
+    });
     },
 }
 </script>

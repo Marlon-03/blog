@@ -42,12 +42,14 @@ export default{
             console.log(error);
         });
 
-        axios.get('/api/related-posts/' + this.slug)
-        .then((response) => {
-            this.relatedPosts = response.data.data;
-        }).catch((error) => {
-            console.log(error);
-        });
+        axios.get('/api/posts/' + this.slug)
+    .then((response) => {
+        this.posts = response.data.data;
+        this.url = "/" + response.data.data.imagePath;
+        console.log(this.url);
+    }).catch((error) => {
+        console.log(error);
+    });
     }
 }
 </script>
