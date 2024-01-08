@@ -9,7 +9,7 @@
         <div class="preview">
           <img :src="url" alt="">
         </div>
-        <br/>
+        <br/> 
 
         <label for="">Category</label>
         <select v-model="posts.category_id"  id="categories">
