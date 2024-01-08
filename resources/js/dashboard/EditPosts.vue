@@ -84,7 +84,6 @@ export default {
     .then((response) => {
         this.posts = response.data.data;
         this.url = response.data.data.imagePath;
-        console.log(this.url);
     }).catch((error) => {
         console.log(error);
     });
