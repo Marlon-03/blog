@@ -14,7 +14,7 @@
                 <td>{{ post.category.name }}</td>
                 <td>{{ post.created_at }}</td>
                 <td>
-                    <!-- <router-link :to="{name: 'EditPost', params: {slug: post.slug}}">Edit</router-link> -->
+                    <router-link :to="{name: 'EditPosts', params: {slug: post.slug}}">Edit</router-link>
                     <button @click="deletePost(post.id)">Delete</button>
                 </td>
             </tr>
