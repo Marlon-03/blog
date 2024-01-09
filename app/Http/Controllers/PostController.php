@@ -7,13 +7,23 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use App\Models\Category;
 
 class PostController extends Controller
 {
-    public function index() 
+    public function index(Request $request) 
     {
+        if ($request->category){
+            $category = Category::where('name', $request->category)->first();
+            if ($category) {
+                return PostResource::collection($category->posts()->latest()->get());
+            } else {
+                return PostResource::collection(collect([]));
+            }
+        }
         return PostResource::collection(Post::latest()->get());
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -47,11 +57,17 @@ class PostController extends Controller
         $post->save();
     }
     public function show(Post $post){
+        if (auth()->user()->id !== $post->user_id){
+            return abort(403);
+        }
         return new PostResource($post);
     }
 
     public function update(Request $request, Post $post)
     {
+        if (auth()->user()->id !== $post->user_id){
+            return abort(403);
+        }
         $request->validate([
             'title' => 'required',
             'file' => 'nullable | image',
@@ -81,6 +97,15 @@ class PostController extends Controller
         $post->body = $body;
         $post->imagePath = $imagePath;
         $post->save();
+    }
+
+    public function destroy(Post $post)
+    {
+        if (auth()->user()->id !== $post->user_id){
+            return abort(403);
+        }
+
+        return $post->delete();
     }
 
 }

@@ -15,7 +15,7 @@
                 <td>{{ post.created_at }}</td>
                 <td>
                     <router-link :to="{name: 'EditPosts', params: {slug: post.slug}}">Edit</router-link>
-                    <button @click="deletePost(post.id)">Delete</button>
+                    <button @click="destroy(post.slug)">Delete</button>
                 </td>
             </tr>
         </tbody>
@@ -34,22 +34,29 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/dashboard-posts')
+       this.fetchPosts();
+    },
+
+    methods: {
+        destroy(slug){
+            axios.delete('/api/posts/' + slug)
+            .then((response) => {
+                this.fetchPosts();
+                console.log(response);
+                console.log('Post deleted successfully');
+                this.$router.push({name: 'PostsList'});
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
+
+        fetchPosts(){
+            axios.get('/api/dashboard-posts')
         .then((response) => {
             this.posts = response.data.data;
         }).catch((error) => {
             console.log(error);
         });
-    },
-
-    methods: {
-        deletePost(id) {
-            axios.delete('/api/posts/' + id)
-            .then((response) => {
-                this.posts = this.posts.filter((post) => post.id !== id);
-            }).catch((error) => {
-                console.log(error);
-            });
         }
     }
 }

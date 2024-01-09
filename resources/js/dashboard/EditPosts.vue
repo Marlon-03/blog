@@ -22,7 +22,7 @@
         <quill-editor theme="snow" v-model:content="posts.body" contentType="text" />
         <br/>
 
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
+        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Update Post</button>
         
     </form>
 </template>
@@ -78,8 +78,12 @@ export default {
                 this.$router.push({name: 'PostsList'});
             }).catch((error) => {
                 console.log(error);
+                this.errors = error.response.data.errors;
+                if (error.response.status === 403) {
+                this.$router.push({name: 'PostsList'});
+                }
             });
-  },
+        },
 },
   mounted() {
         axios.get('/api/categories')
@@ -94,7 +98,9 @@ export default {
         this.posts = response.data.data;
         this.url = response.data.data.imagePath;
     }).catch((error) => {
-        console.log(error);
+        if (error.response.status === 403) {
+            this.$router.push({name: 'PostsList'});
+        }
     });
     },
 }
