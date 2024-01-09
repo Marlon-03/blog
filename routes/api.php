@@ -46,6 +46,8 @@ Route::get('categories', [CategoryController::class, 'index']);
 // Posts
 Route::middleware('auth:sanctum')->post('/posts', [PostController::class, 'store']);
 
+Route::middleware('auth:sanctum')->put('/posts/{post:slug}', [PostController::class, 'update']);
+
 Route::get('posts', [PostController::class, 'index']);
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);

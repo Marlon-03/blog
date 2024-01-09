@@ -2,7 +2,7 @@
     <h1>this is blog page</h1>
     <section class="cards-blog latest-blog">
         <div class="card-blog-content" v-for="post in posts" :key="post.id">
-            <img :src="post.imagePath" alt="">
+            <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image">
             <p>
             {{ post.created_at }}
             <span>Written by{{ post.user }}</span>

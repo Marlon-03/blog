@@ -5,7 +5,7 @@
             {{ post.created_at }}
             <span>Written by{{ post.user }}</span>
         </p>
-        <img :src="`${post.imagePath}`" alt="">
+        <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image">
         {{ post.body }}
     </section>
 
@@ -42,11 +42,9 @@ export default{
             console.log(error);
         });
 
-        axios.get('/api/posts/' + this.slug)
+        axios.get('/api/related-posts/' + this.slug)
     .then((response) => {
-        this.posts = response.data.data;
-        this.url = "/" + response.data.data.imagePath;
-        console.log(this.url);
+        this.relatedPosts = response.data.data;
     }).catch((error) => {
         console.log(error);
     });

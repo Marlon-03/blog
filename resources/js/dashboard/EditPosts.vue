@@ -60,7 +60,7 @@ export default {
             formData.append('title', this.posts.title);
             formData.append('category_id', this.posts.category_id);
             if (this.posts.file) {
-                formData.append('image', this.posts.file);
+                formData.append('file', this.posts.file);
             }
             formData.append('body', this.posts.body);
 
@@ -74,6 +74,7 @@ export default {
             })
             .then((response) => {
                 console.log(response);
+                console.log('Post updated successfully')
                 this.$router.push({name: 'PostsList'});
             }).catch((error) => {
                 console.log(error);
