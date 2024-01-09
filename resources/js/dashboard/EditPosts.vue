@@ -56,20 +56,28 @@ export default {
           URL.revokeObjectURL(file);
       },
       submitPost(){
-        axios.post('/api/posts', this.posts,{
-            headers: {'Content-Type': 'multipart/form-data'}
-        })
-        .then(() =>{
-          this.posts = {};
-          this.url = null;
-          this.posts.category_id = '';
-          this.$refs.fileInput.value = ''; // Clear the file input
-          this.posts.body = ''; // Clear the Quill editor
-          console.log('Post created successfully');
-        }
-        ).catch((error) => {
-            console.log(error);
-      });
+            const formData = new FormData();
+            formData.append('title', this.posts.title);
+            formData.append('category_id', this.posts.category_id);
+            if (this.posts.file) {
+                formData.append('image', this.posts.file);
+            }
+            formData.append('body', this.posts.body);
+
+            formData.append('_method', 'PUT');
+
+            axios.post('/api/posts/' + this.slug, formData, 
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                this.$router.push({name: 'PostsList'});
+            }).catch((error) => {
+                console.log(error);
+            });
   },
 },
   mounted() {
