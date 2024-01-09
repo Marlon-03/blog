@@ -2,6 +2,7 @@
     <h1>this is blog page</h1>
     <div class="categories">
         <ul>
+            <li><a href="#" @click="fetchAll()">All</a></li>
             <li v-for="category in categories" :key="category.id">
                 <a href="#" @click="filterByCategory(category.name)">{{ category.name }}</a>
 
@@ -49,7 +50,17 @@ export default{
             .catch((error) => {
                 console.log(error);
             });
-        }
+        },
+
+        fetchAll(){
+            axios.get('api/posts')
+            .then((response) => {
+                this.posts = response.data.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
     },
 
     mounted(){
