@@ -1,5 +1,12 @@
 <template>
     <h1>this is blog page</h1>
+    <div>
+        <form  @submit.prevent>
+            <input type="text" placeholder="Search" v-model="title">
+            <button @click="searchPosts">Search</button>
+        </form>
+    </div>
+
     <div class="categories">
         <ul>
             <li><a href="#" @click="fetchAll()">All</a></li>
@@ -23,6 +30,7 @@
         </div>
 
     </section>
+    <h3 v-if="!posts.length">NO MATCH WAS FOUND</h3>
 </template>
 
 <script>
@@ -34,10 +42,25 @@ export default{
         return{
             posts: [],
             categories: [],
+            title: '',
         };
     },
 
     methods: {
+        searchPosts() {
+        axios.get('api/posts', {
+            params: {
+                search: this.title,
+            },
+        })
+        .then((response) => {
+            this.posts = response.data.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    },
+
         filterByCategory(name){
             axios.get('api/posts', {
                 params: {
@@ -61,6 +84,7 @@ export default{
                 console.log(error);
             });
         },
+
     },
 
     mounted(){

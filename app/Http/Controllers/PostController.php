@@ -14,12 +14,13 @@ class PostController extends Controller
     public function index(Request $request) 
     {
         if ($request->category){
-            $category = Category::where('name', $request->category)->first();
-            if ($category) {
-                return PostResource::collection($category->posts()->latest()->get());
-            } else {
-                return PostResource::collection(collect([]));
-            }
+            return PostResource::collection(Category::where('name', $request->category)->firstOrFail()->posts()->latest()->get());
+        }
+
+        else if ($request->search){
+            return PostResource::collection(Post::where('title', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('body', 'LIKE', '%'.$request->search.'%')->latest()->get());
+
         }
         return PostResource::collection(Post::latest()->get());
     }
