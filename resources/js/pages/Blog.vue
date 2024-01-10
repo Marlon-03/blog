@@ -1,6 +1,7 @@
 <template>
     <h1>this is blog page</h1>
     <div>
+    <div>
         <form  @submit.prevent>
             <input type="text" placeholder="Search" v-model="title">
             <button @click="searchPosts">Search</button>
@@ -31,6 +32,13 @@
 
     </section>
     <h3 v-if="!posts.length">NO MATCH WAS FOUND</h3>
+
+    <div class="pagination">
+        <a href="#" v-for="(link, index) in links" :key="index"
+        v-html="link.label" :class="{active: link.active, disabled: !link.url}"
+        @click="changePage(link)"></a>
+    </div>
+    </div>
 </template>
 
 <script>
@@ -43,23 +51,39 @@ export default{
             posts: [],
             categories: [],
             title: '',
+            links: [],
         };
     },
 
     methods: {
         searchPosts() {
-        axios.get('api/posts', {
-            params: {
-                search: this.title,
-            },
-        })
-        .then((response) => {
-            this.posts = response.data.data;
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    },
+            axios.get('api/posts', {
+                params: {
+                    search: this.title,
+                },
+            })
+            .then((response) => {
+                this.posts = response.data.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+
+        changePage(link){
+            if(!link.url || link.active){
+                return;
+            }
+            axios.get(link.url)
+            .then((response) => {
+                this.posts = response.data.data;
+                this.links = response.data.meta.links;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        },
 
         filterByCategory(name){
             axios.get('api/posts', {
@@ -91,6 +115,7 @@ export default{
         axios.get('/api/posts')
         .then((response) => {
             this.posts = response.data.data;
+            this.links = response.data.meta.links;
         }).catch((error) => {
             console.log(error);
         });

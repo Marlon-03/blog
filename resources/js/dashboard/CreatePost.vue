@@ -1,4 +1,5 @@
 <template>
+  <div>
     <h1>Create Post</h1>
     <form @submit.prevent="submitPost" className="flex flex-col">
         <label for="">Title</label>
@@ -25,6 +26,7 @@
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
         
     </form>
+  </div>
 </template>
 
 
@@ -33,7 +35,7 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 export default {
-  emits: ['showNavbar'],
+  // emits: ['showNavbar'],
   components: {
     QuillEditor
   },

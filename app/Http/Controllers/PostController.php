@@ -14,15 +14,15 @@ class PostController extends Controller
     public function index(Request $request) 
     {
         if ($request->category){
-            return PostResource::collection(Category::where('name', $request->category)->firstOrFail()->posts()->latest()->get());
+            return PostResource::collection(Category::where('name', $request->category)->firstOrFail()->posts()->latest()->paginate(4)->withQueryString());
         }
 
         else if ($request->search){
             return PostResource::collection(Post::where('title', 'LIKE', '%'.$request->search.'%')
-            ->orWhere('body', 'LIKE', '%'.$request->search.'%')->latest()->get());
+            ->orWhere('body', 'LIKE', '%'.$request->search.'%')->latest()->paginate(4)->withQueryString());
 
         }
-        return PostResource::collection(Post::latest()->get());
+        return PostResource::collection(Post::latest()->paginate(4));
     }
 
     public function store(Request $request)
