@@ -64,6 +64,7 @@ export default{
             })
             .then((response) => {
                 this.posts = response.data.data;
+                this.links = response.data.meta.links;
             })
             .catch((error) => {
                 console.log(error);
@@ -93,6 +94,7 @@ export default{
             })
             .then((response) => {
                 this.posts = response.data.data;
+                this.links = response.data.meta.links;
             })
             .catch((error) => {
                 console.log(error);
