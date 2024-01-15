@@ -15,13 +15,22 @@ export default{
             name: '',
         };
     },
-    mounted(){
-        axios.get('/api/user').then((response)=>{
-            this.name =response.data.name;
-        }).catch((error)=>{
-            console.log(error);
-        });
+    mounted() {
+    const apiToken = localStorage.getItem('apiToken');
+
+    axios.get('/api/user', {
+        headers: {
+            'Authorization': `Bearer ${apiToken}`,
+        }
+    })
+    .then((response) => {
+        this.name = response.data.name;
+    })
+    .catch((error) => {
+        console.log(error);
+    });
     },
+    
     methods:{
         logout(){
             axios.post('/api/logout').then((response)=>{
@@ -34,4 +43,5 @@ export default{
         }
     }
 }
+
 </script>
