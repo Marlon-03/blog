@@ -5,15 +5,17 @@ import About from '../pages/About.vue';
 import Blog from '../pages/Blog.vue';
 import Contact from '../pages/Contact.vue';
 import Dashboard from '../pages/Dashboard.vue';
+import AdminDashboard from '../pages/AdminDashboard.vue';
 import Login from '../pages/Login.vue';
 import Register from '../pages/Register.vue';
 import SingleBlog from '../pages/SingleBlog.vue';
-import CategoriesCreate from '../dashboard/CategoriesCreate.vue';
-import CategoriesList from '../dashboard/CategoriesList.vue';
-import EditCategoriesList from '../dashboard/EditCategoriesList.vue';
-import CreatePost from '../dashboard/CreatePost.vue';
-import PostsList from '../dashboard/PostList.vue';
-import EditPosts from '../dashboard/EditPosts.vue';
+import CategoriesCreate from '../dashboard/adminDashboard/CategoriesCreate.vue';
+import CategoriesList from '../dashboard/adminDashboard/CategoriesList.vue';
+import EditCategoriesList from '../dashboard/adminDashboard/EditCategoriesList.vue';
+import ContributorCategoryLists from '../dashboard/contributorDashboard/ContributorCategoryLists.vue';
+import CreatePost from '../dashboard/contributorDashboard/CreatePost.vue';
+import PostsList from '../dashboard/contributorDashboard/PostList.vue';
+import EditPosts from '../dashboard/contributorDashboard/EditPosts.vue';
 
 
 
@@ -63,6 +65,12 @@ const routes = [
         meta:{requiresAuth: true}
     },
     {
+        path: '/adminDashboard',
+        name: 'AdminDashboard',
+        component: AdminDashboard,
+        meta:{requiresAuth: true}
+    },
+    {
         path: '/categories/create',
         name: 'CategoriesCreate',
         component: CategoriesCreate,
@@ -72,6 +80,12 @@ const routes = [
         path: '/categories',
         name: 'CategoriesList',
         component: CategoriesList,
+        meta:{requiresAuth: true}
+    },
+    {
+        path: '/categories/view',
+        name: 'ContributorCategoryLists',
+        component: ContributorCategoryLists,
         meta:{requiresAuth: true}
     },
     {

@@ -9,6 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RelatedPostController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,6 +31,9 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'check']);
 
 Route::post('/logout',[LoginController::class, 'logout']);
+
+Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->name('dashboard.admin');
+Route::get('/dashboard/contributor', [DashboardController::class, 'contributor'])->name('dashboard.contributor');
 
 
 // Category Routes

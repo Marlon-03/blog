@@ -29,9 +29,20 @@ export default {
             axios.post('/api/login', this.user)
                 .then(response => {
                     console.log('Response:', response.data);
-                    this.$router.push({name: 'Dashboard'});
+
+                    // Store the API token in local storage
+                    localStorage.setItem('apiToken', response.data.api_token);
+
                     localStorage.setItem('authenticated', true);
                     this.$emit('showNavbar') // Emit the event
+
+                    // Check the user's role and navigate to the appropriate dashboard
+                    if (response.data.role === 'admin') {
+                        this.$router.push({name: 'AdminDashboard'});
+                    } else {
+                        response.data.role === 'contributor'
+                        this.$router.push({name: 'Dashboard'});
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Policies\CategoryPolicy;
 
 class CategoryController extends Controller
 {
 
     public function store(Request $request)
     {
+        $this->authorize('create', Category::class);
         $request->validate([
             'name' => 'required|unique:categories',
         ]);
@@ -25,6 +27,7 @@ class CategoryController extends Controller
     }
 
     public function index(){
+        $this->authorize('viewAny', Category::class);
         return Category::latest()->get();
     }
 
@@ -34,11 +37,14 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id) 
     {
+
         $request->validate([
             'name' => 'required|unique:categories,name,'.$id,
         ]);
     
         $category = Category::find($id);
+
+        $this->authorize('update', $category);
     
         if (!$category) {
             return response()->json(['message' => 'Category not found'], 404);
@@ -52,7 +58,9 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
+
         $category = Category::find($id);
+        $this->authorize('delete', $category);
     
         if (!$category) {
             return response()->json(['message' => 'Category not found'], 404);

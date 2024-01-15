@@ -45,7 +45,7 @@ export default {
             axios.post('/api/register', this.user)
                 .then(response => {
                     console.log('Response:', response.data);
-                    this.$router.push({ name: 'Dashboard' });
+                    this.$router.push({ name: 'Login' });
                 })
                 .catch(error => {
                     console.error('Error:', error);
