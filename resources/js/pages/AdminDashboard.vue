@@ -6,7 +6,8 @@
     
     <router-link :to="{name: 'CategoriesCreate'}">Create Categories</router-link>
     <router-link :to="{name: 'AdminCategoriesList'}">Category List</router-link>
-    <router-link :to="{name: 'PostsList'}">Post List</router-link>
+    <router-link :to="{name: 'PostsList'}">Your Posts</router-link>
+    <router-link :to="{name: 'AdminPostLists'}">Post Lists</router-link>
 </template>
 
 

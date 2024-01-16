@@ -21,7 +21,7 @@ import AdminDashboard from '../pages/AdminDashboard.vue';
 import AdminCategoriesList from '../dashboard/adminDashboard/AdminCategoriesList.vue';
 import CategoriesCreate from '../dashboard/adminDashboard/CategoriesCreate.vue';
 import EditCategoriesList from '../dashboard/adminDashboard/EditCategoriesList.vue';
-
+import AdminPostLists from '../dashboard/adminDashboard/AdminPostLists.vue';
 
 const routes = [
     {
@@ -62,12 +62,7 @@ const routes = [
         component: Register,
         meta:{requiresGuest: true}
     },
-    {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: Dashboard,
-        meta:{requiresAuth: true}
-    },
+
 
     // admin
     {
@@ -95,8 +90,20 @@ const routes = [
         meta: { requiresAuth: true },
         props: true,
     },
+    {
+        path: '/adminPostLists',
+        name: 'AdminPostLists',
+        component: AdminPostLists,
+        meta:{requiresAuth: true}
+    },
 
     // user
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: Dashboard,
+        meta:{requiresAuth: true}
+    },
     {
         path: '/categories/view',
         name: 'ContributorCategoriesList',
