@@ -1,22 +1,26 @@
 import { createRouter, createWebHistory } from "vue-router";
+// import store from './store'; 
 
 import Home from '../pages/Home.vue';
 import About from '../pages/About.vue';
 import Blog from '../pages/Blog.vue';
 import Contact from '../pages/Contact.vue';
-import Dashboard from '../pages/Dashboard.vue';
-import AdminDashboard from '../pages/AdminDashboard.vue';
 import Login from '../pages/Login.vue';
 import Register from '../pages/Register.vue';
 import SingleBlog from '../pages/SingleBlog.vue';
-import CategoriesCreate from '../dashboard/adminDashboard/CategoriesCreate.vue';
-import CategoriesList from '../dashboard/adminDashboard/CategoriesList.vue';
-import EditCategoriesList from '../dashboard/adminDashboard/EditCategoriesList.vue';
-import ContributorCategoryLists from '../dashboard/contributorDashboard/ContributorCategoryLists.vue';
+
+// user
+import Dashboard from '../pages/Dashboard.vue';
+import ContributorCategoriesList from '../dashboard/contributorDashboard/ContributorCategoriesList.vue';
 import CreatePost from '../dashboard/contributorDashboard/CreatePost.vue';
 import PostsList from '../dashboard/contributorDashboard/PostList.vue';
 import EditPosts from '../dashboard/contributorDashboard/EditPosts.vue';
 
+// admin
+import AdminDashboard from '../pages/AdminDashboard.vue';
+import AdminCategoriesList from '../dashboard/adminDashboard/AdminCategoriesList.vue';
+import CategoriesCreate from '../dashboard/adminDashboard/CategoriesCreate.vue';
+import EditCategoriesList from '../dashboard/adminDashboard/EditCategoriesList.vue';
 
 
 const routes = [
@@ -64,6 +68,8 @@ const routes = [
         component: Dashboard,
         meta:{requiresAuth: true}
     },
+
+    // admin
     {
         path: '/adminDashboard',
         name: 'AdminDashboard',
@@ -77,15 +83,9 @@ const routes = [
         meta:{requiresAuth: true}
     },
     {
-        path: '/categories',
-        name: 'CategoriesList',
-        component: CategoriesList,
-        meta:{requiresAuth: true}
-    },
-    {
-        path: '/categories/view',
-        name: 'ContributorCategoryLists',
-        component: ContributorCategoryLists,
+        path: '/adminCategories',
+        name: 'AdminCategoriesList',
+        component: AdminCategoriesList,
         meta:{requiresAuth: true}
     },
     {
@@ -94,6 +94,14 @@ const routes = [
         component: EditCategoriesList,
         meta: { requiresAuth: true },
         props: true,
+    },
+
+    // user
+    {
+        path: '/categories/view',
+        name: 'ContributorCategoriesList',
+        component: ContributorCategoriesList,
+        meta:{requiresAuth: true}
     },
     {
         path: '/posts/create',
@@ -122,19 +130,24 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach((to, from) => {
+router.beforeEach((to, from, next) => {
     const authenticated = localStorage.getItem("authenticated");
+    const userRole = localStorage.getItem('userRole');
 
-    if (to.meta.requiresGuest && authenticated){
-        return{
-            name: 'Dashboard'
-        };
-    }else if (to.meta.requiresAuth && !authenticated){
-        return{
-            name: 'Login'
+    if (to.meta.requiresAuth && !authenticated) {
+        next({ name: 'Login' });
+    } else if (to.meta.requiresGuest && authenticated) {
+        if (userRole === 'admin' && to.name !== 'AdminDashboard') {
+            next({ name: 'AdminDashboard' });
+        } else if (userRole === 'contributor' && to.name !== 'Dashboard') {
+            next({ name: 'Dashboard' });
+        } else {
+            next();
         }
+    } else {
+        next();
     }
-})
+});
 
 export default router;
 

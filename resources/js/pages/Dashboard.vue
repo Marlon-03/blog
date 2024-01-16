@@ -3,7 +3,7 @@
     <h1>{{ name }}</h1>
     <button @click="logout">Log Out</button>
     <router-link :to="{name: 'CreatePost'}">Create Post</router-link>
-    <router-link :to="{name: 'ContributorCategoryLists'}">Category List</router-link>
+    <router-link :to="{name: 'ContributorCategoriesList'}">Category List</router-link>
     <router-link :to="{name: 'PostsList'}">Post List</router-link>
 </template>
 

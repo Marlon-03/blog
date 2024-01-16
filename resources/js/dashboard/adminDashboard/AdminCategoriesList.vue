@@ -26,11 +26,7 @@ export default{
   emits: ['showNavbar'],
     data(){
         return{
-            categories: {
-                id: '',
-                name: '',
-            
-            }
+            categories: []
         }
     },
     methods:{
@@ -54,14 +50,6 @@ export default{
     },
     created() {
         this.fetchCategories(); // Fetch the categories when the component is created
-    },
-    mounted(){
-        axios.get('/api/categories')
-        .then((response)=>{ console.log(response);
-            this.categories = response.data;
-        }).catch((error)=>{
-            console.log(error);
-        });
     },
 }
 </script>

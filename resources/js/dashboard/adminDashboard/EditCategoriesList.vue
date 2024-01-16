@@ -1,5 +1,5 @@
 <template>
-<router-link :to="{name: 'CategoriesList'}">Back</router-link>
+<router-link :to="{name: 'AdminCategoriesList'}">Back</router-link>
       
     <form @submit.prevent="EditCategory">
       <label>Edit Category</label>
@@ -33,7 +33,7 @@
           .then(response => {
             console.log('Response:', response.data);
             this.category = {}; 
-            this.$router.push({ name: 'CategoriesList' });
+            this.$router.push({ name: 'AdminCategoriesList' });
           })
           .catch(error => {
             console.error('Error:', error);

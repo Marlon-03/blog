@@ -25,31 +25,32 @@ export default {
         };
     },
     methods:{
-        saveData() {
-            axios.post('/api/login', this.user)
-                .then(response => {
-                    console.log('Response:', response.data);
+    saveData() {
+        axios.post('/api/login', this.user)
+        .then(response => {
+    console.log('Response:', response.data);
 
-                    // Store the API token in local storage
-                    localStorage.setItem('apiToken', response.data.api_token);
+    // Store the API token in local storage
+    localStorage.setItem('apiToken', response.data.api_token);
 
-                    localStorage.setItem('authenticated', true);
-                    this.$emit('showNavbar') // Emit the event
+    // Store the user's role in local storage
+    localStorage.setItem('userRole', response.data.role);
 
-                    // Check the user's role and navigate to the appropriate dashboard
-                    if (response.data.role === 'admin') {
-                        this.$router.push({name: 'AdminDashboard'});
-                    } else {
-                        response.data.role === 'contributor'
-                        this.$router.push({name: 'Dashboard'});
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        },
+    localStorage.setItem('authenticated', true);
+    this.$emit('showNavbar') // Emit the event
+
+    // Check the user's role and navigate to the appropriate dashboard
+    if (response.data.role === 'admin') {
+        this.$router.push({name: 'AdminDashboard'});
+    } else if (response.data.role === 'contributor') {
+        this.$router.push({name: 'Dashboard'});
     }
-}
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+    }}
+    }
 </script>
 
 <style scoped>

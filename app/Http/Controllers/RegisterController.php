@@ -22,7 +22,7 @@ class RegisterController extends Controller
         'password' => bcrypt($request->password),
     ]);
 
-    $userRole = Role::where('name', 'user')->first();
+    $userRole = Role::where('name', 'contributor')->first();
     $user->roles()->attach($userRole);
 
     // Log the user in

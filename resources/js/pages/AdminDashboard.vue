@@ -5,7 +5,7 @@
     <router-link :to="{name: 'CreatePost'}">Create Post</router-link>
     
     <router-link :to="{name: 'CategoriesCreate'}">Create Categories</router-link>
-    <router-link :to="{name: 'CategoriesList'}">Category List</router-link>
+    <router-link :to="{name: 'AdminCategoriesList'}">Category List</router-link>
     <router-link :to="{name: 'PostsList'}">Post List</router-link>
 </template>
 
@@ -18,10 +18,18 @@ export default{
             name: '',
         };
     },
-    mounted(){
-        axios.get('/api/user').then((response)=>{
-            this.name =response.data.name;
-        }).catch((error)=>{
+    mounted() {
+        const apiToken = localStorage.getItem('apiToken');
+
+        axios.get('/api/user', {
+            headers: {
+                'Authorization': `Bearer ${apiToken}`,
+            }
+        })
+        .then((response) => {
+            this.name = response.data.name;
+        })
+        .catch((error) => {
             console.log(error);
         });
     },

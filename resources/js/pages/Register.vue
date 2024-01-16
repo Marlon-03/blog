@@ -34,6 +34,7 @@ export default {
                 email: '',
                 password: '',
                 password_confirmation: '',
+                role: 'contributor', // default role
             },
             validationErrors: null,
         };
