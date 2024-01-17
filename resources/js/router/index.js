@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-// import store from './store'; 
 
+// global
 import Home from '../pages/Home.vue';
 import About from '../pages/About.vue';
 import Blog from '../pages/Blog.vue';
@@ -8,13 +8,13 @@ import Contact from '../pages/Contact.vue';
 import Login from '../pages/Login.vue';
 import Register from '../pages/Register.vue';
 import SingleBlog from '../pages/SingleBlog.vue';
+import CreatePost from '../dashboard/contributorDashboard/CreatePost.vue';
+import PostsList from '../dashboard/contributorDashboard/PostList.vue';
+import EditPosts from '../dashboard/contributorDashboard/EditPosts.vue';
 
 // user
 import Dashboard from '../pages/Dashboard.vue';
 import ContributorCategoriesList from '../dashboard/contributorDashboard/ContributorCategoriesList.vue';
-import CreatePost from '../dashboard/contributorDashboard/CreatePost.vue';
-import PostsList from '../dashboard/contributorDashboard/PostList.vue';
-import EditPosts from '../dashboard/contributorDashboard/EditPosts.vue';
 
 // admin
 import AdminDashboard from '../pages/AdminDashboard.vue';
@@ -61,6 +61,25 @@ const routes = [
         name: 'Register',
         component: Register,
         meta:{requiresGuest: true}
+    },
+    {
+        path: '/posts/create',
+        name: 'CreatePost',
+        component: CreatePost,
+        meta: { requiresAuth: true},
+    },
+    {
+        path: '/postlists',
+        name: 'PostsList',
+        component: PostsList,
+        meta: { requiresAuth: true,},
+    },
+    {
+        path: '/posts/:slug/edit',
+        name: 'EditPosts',
+        component: EditPosts,
+        meta: { requiresAuth: true,},
+        props: true,
     },
 
 
@@ -110,25 +129,6 @@ const routes = [
         component: ContributorCategoriesList,
         meta:{requiresAuth: true, role: 'contributor'}
     },
-    {
-        path: '/posts/create',
-        name: 'CreatePost',
-        component: CreatePost,
-        meta: { requiresAuth: true},
-    },
-    {
-        path: '/postlists',
-        name: 'PostsList',
-        component: PostsList,
-        meta: { requiresAuth: true,},
-    },
-    {
-        path: '/posts/:slug/edit',
-        name: 'EditPosts',
-        component: EditPosts,
-        meta: { requiresAuth: true,},
-        props: true,
-    }
 
 ];
 
