@@ -26,7 +26,7 @@ export default {
     },
     methods:{
     saveData() {
-        axios.post('/api/login', this.user)
+        return axios.post('/api/login', this.user)
         .then(response => {
     console.log('Response:', response.data);
 

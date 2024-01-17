@@ -1,5 +1,5 @@
 <template>
-    <h1>this is dashboard page</h1>
+    <h1>this is contributor dashboard page</h1>
     <h1>{{ name }}</h1>
     <button @click="logout">Log Out</button>
     <router-link :to="{name: 'CreatePost'}">Create Post</router-link>

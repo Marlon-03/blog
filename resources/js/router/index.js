@@ -69,32 +69,32 @@ const routes = [
         path: '/adminDashboard',
         name: 'AdminDashboard',
         component: AdminDashboard,
-        meta:{requiresAuth: true}
+        meta:{requiresAuth: true, role: 'admin'}
     },
     {
         path: '/categories/create',
         name: 'CategoriesCreate',
         component: CategoriesCreate,
-        meta:{requiresAuth: true}
+        meta:{requiresAuth: true, role: 'admin'}
     },
     {
         path: '/adminCategories',
         name: 'AdminCategoriesList',
         component: AdminCategoriesList,
-        meta:{requiresAuth: true}
+        meta:{requiresAuth: true, role: 'admin'}
     },
     {
         path: '/categories/:id/edit',
         name: 'EditCategoriesList',
         component: EditCategoriesList,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true, role: 'admin'},
         props: true,
     },
     {
         path: '/adminPostLists',
         name: 'AdminPostLists',
         component: AdminPostLists,
-        meta:{requiresAuth: true}
+        meta:{requiresAuth: true, role: 'admin'}
     },
 
     // user
@@ -102,31 +102,31 @@ const routes = [
         path: '/dashboard',
         name: 'Dashboard',
         component: Dashboard,
-        meta:{requiresAuth: true}
+        meta:{requiresAuth: true,  role: 'contributor'} 
     },
     {
         path: '/categories/view',
         name: 'ContributorCategoriesList',
         component: ContributorCategoriesList,
-        meta:{requiresAuth: true}
+        meta:{requiresAuth: true, role: 'contributor'}
     },
     {
         path: '/posts/create',
         name: 'CreatePost',
         component: CreatePost,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true, role: 'contributor' },
     },
     {
         path: '/postlists',
         name: 'PostsList',
         component: PostsList,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true, role: 'contributor' },
     },
     {
         path: '/posts/:slug/edit',
         name: 'EditPosts',
         component: EditPosts,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true, role: 'contributor' },
         props: true,
     }
 
@@ -144,17 +144,20 @@ router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth && !authenticated) {
         next({ name: 'Login' });
     } else if (to.meta.requiresGuest && authenticated) {
-        if (userRole === 'admin' && to.name !== 'AdminDashboard') {
-            next({ name: 'AdminDashboard' });
-        } else if (userRole === 'contributor' && to.name !== 'Dashboard') {
-            next({ name: 'Dashboard' });
+        next();
+    } else {
+        // If the route does not require a guest, check the user's role
+        if (authenticated) {
+            if (to.meta.role && to.meta.role !== userRole) {
+                // If the route requires a specific role and the user does not have that role, redirect them
+                next({ name: userRole === 'admin' ? 'AdminDashboard' : 'Dashboard' });
+            } else {
+                next();
+            }
         } else {
             next();
         }
-    } else {
-        next();
     }
 });
-
 export default router;
 
