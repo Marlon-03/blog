@@ -21,7 +21,7 @@ import AdminDashboard from '../pages/AdminDashboard.vue';
 import AdminCategoriesList from '../dashboard/adminDashboard/AdminCategoriesList.vue';
 import CategoriesCreate from '../dashboard/adminDashboard/CategoriesCreate.vue';
 import EditCategoriesList from '../dashboard/adminDashboard/EditCategoriesList.vue';
-import AdminPostLists from '../dashboard/adminDashboard/AdminPostLists.vue';
+import AdminApprovalPosts from '../dashboard/adminDashboard/AdminApprovalPosts.vue';
 
 const routes = [
     {
@@ -91,9 +91,9 @@ const routes = [
         props: true,
     },
     {
-        path: '/adminPostLists',
-        name: 'AdminPostLists',
-        component: AdminPostLists,
+        path: '/AdminApprovalPosts',
+        name: 'AdminApprovalPosts',
+        component: AdminApprovalPosts,
         meta:{requiresAuth: true, role: 'admin'}
     },
 
@@ -114,19 +114,19 @@ const routes = [
         path: '/posts/create',
         name: 'CreatePost',
         component: CreatePost,
-        meta: { requiresAuth: true, role: 'contributor' },
+        meta: { requiresAuth: true},
     },
     {
         path: '/postlists',
         name: 'PostsList',
         component: PostsList,
-        meta: { requiresAuth: true, role: 'contributor' },
+        meta: { requiresAuth: true,},
     },
     {
         path: '/posts/:slug/edit',
         name: 'EditPosts',
         component: EditPosts,
-        meta: { requiresAuth: true, role: 'contributor' },
+        meta: { requiresAuth: true,},
         props: true,
     }
 
