@@ -5,6 +5,7 @@
             <tr>
                 <th>Title</th>
                 <th>Created At</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -13,6 +14,7 @@
                 <td>{{ post.title }}</td>
                 <td>{{ post.category.name }}</td>
                 <td>{{ post.created_at }}</td>
+                <td>{{ getStatusText(post.status) }}</td>
                 <td>
                     <router-link :to="{name: 'EditPosts', params: {slug: post.slug}}">Edit</router-link>
                     <button @click="destroy(post.slug)">Delete</button>
@@ -50,10 +52,21 @@ export default {
             });
         },
 
+        getStatusText(status) {
+            status = parseInt(status, 10);
+                switch (status) {
+                    case 0: return 'Disapproved';
+                    case 1: return 'Pending';
+                    case 2: return 'Approved';
+                    default: return 'Unknown';
+                }
+        },
+
         fetchPosts(){
             axios.get('/api/dashboard-posts')
         .then((response) => {
             this.posts = response.data.data;
+            console.log(this.posts);
         }).catch((error) => {
             console.log(error);
         });

@@ -33,6 +33,7 @@ Route::post('/login', [LoginController::class, 'check']);
 Route::post('/logout',[LoginController::class, 'logout']);
 
 Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->name('dashboard.admin');
+
 Route::get('/dashboard/contributor', [DashboardController::class, 'contributor'])->name('dashboard.contributor');
 
 
@@ -63,3 +64,5 @@ Route::get('related-posts/{post:slug}', [RelatedPostController::class, 'index'])
 Route::get('home-posts', [HomeController::class, 'index']);
 
 Route::get('dashboard-posts', [DashboardPostController::class, 'index']);
+
+// admin approval post
