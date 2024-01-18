@@ -14,15 +14,16 @@ class PostController extends Controller
     public function index(Request $request) 
     {
         if ($request->category){
-            return PostResource::collection(Category::where('name', $request->category)->firstOrFail()->posts()->latest()->paginate(4)->withQueryString());
+            return PostResource::collection(Category::where('name', $request->category)->firstOrFail()->posts()->where('status', 2)->latest()->paginate(4)->withQueryString());
         }
-
+    
         else if ($request->search){
-            return PostResource::collection(Post::where('title', 'LIKE', '%'.$request->search.'%')
-            ->orWhere('body', 'LIKE', '%'.$request->search.'%')->latest()->paginate(4)->withQueryString());
-
+            return PostResource::collection(Post::where('status', 2)->where(function($query) use ($request) {
+                $query->where('title', 'LIKE', '%'.$request->search.'%')
+                      ->orWhere('body', 'LIKE', '%'.$request->search.'%');
+            })->latest()->paginate(4)->withQueryString());
         }
-        return PostResource::collection(Post::latest()->paginate(4));
+        return PostResource::collection(Post::where('status', 2)->latest()->paginate(4));
     }
 
     public function store(Request $request)
@@ -107,6 +108,24 @@ class PostController extends Controller
         }
 
         return $post->delete();
+    }
+
+    public function adminPosts()
+    {
+        $posts = Post::with('category')->latest()->get();
+        return PostResource::collection($posts);
+    }
+
+    public function updateStatus($id, Request $request)
+    {
+        $request->validate([
+            'status' => 'required|in:0,1,2',
+        ]);
+        $post = Post::findOrFail($id);
+        $post->status = $request->status;
+        $post->save();
+
+        return response()->json(['message' => 'Post status updated.']);
     }
 
 }

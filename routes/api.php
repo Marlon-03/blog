@@ -66,3 +66,6 @@ Route::get('home-posts', [HomeController::class, 'index']);
 Route::get('dashboard-posts', [DashboardPostController::class, 'index']);
 
 // admin approval post
+Route::get('admin/posts', [PostController::class, 'adminPosts']);
+
+Route::put('admin/posts/{id}/status', [PostController::class, 'updateStatus']);
