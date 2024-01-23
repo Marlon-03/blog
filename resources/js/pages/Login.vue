@@ -1,14 +1,14 @@
 <template>
     <div class="relative background flex items-center justify-center h-screen">
     <div class="absolute flex bg-white px-5 py-5">
-        <form @submit.prevent="saveData" class="flex flex-col font-kadwa gap-y-3 items-center justify-center">
-            <h1 class="font-kadwa">Log in</h1>
+        <form @submit.prevent="saveData" class="flex flex-col gap-y-3 items-center justify-center">
+            <h1 class="font-kadwa font-bold decoration-black text-2xl">Log in</h1>
             <div>
-                <label class="block text-gray-600 text-sm font-medium mb-2">Email</label>
-                <input type="email" v-model="user.email" id="email" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500" >
+                <label class="block  text-gray-600 text-sm font-medium mb-2">Email</label>
+          <img src="img/email.svg">      <input type="email" v-model="user.email" id="email" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500" >
             </div>
             <div>
-                <label class="block text-gray-600 text-sm font-medium mb-2">Password</label>
+                <label class="block text-gray-600 text-sm font-medium mb-2">Password</label><email></email>
                 <input type="password" v-model="user.password" id="password" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
             </div>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Log In</button>
@@ -19,7 +19,11 @@
 </template>
 
 <script>
+import EmailIcon from '../../../public/img/email.svg';
 export default {
+    components: {
+    EmailIcon,
+  },
     emits: ['showNavbar'],
     data(){
         return{
@@ -59,13 +63,12 @@ export default {
 </script>
 
 <style scoped>
+
 .background {
     background-image: url('/img/Background.png');
     background-size: cover;
     background-position: center center;
     min-height: 100vh; 
 }
-/* .form {
-    font-family: 'Kadwa', 'Istok Web', sans-serif;
-} */
+
 </style>
