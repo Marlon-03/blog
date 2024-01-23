@@ -1,14 +1,17 @@
 <template>
-    <div class="background">
-    <div className="flex mx-auto items-center justify-center h-screen">
-        <form @submit.prevent="saveData" className="flex flex-col">
-            <label className="block text-gray-600 text-sm font-medium mb-2">Email</label>
-            <input type="email" v-model="user.email" id="email" className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500" >
-
-            <label className="block text-gray-600 text-sm font-medium mb-2">Password</label>
-            <input type="password" v-model="user.password" id="password" className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
-            
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Log In</button>
+    <div class="relative background flex items-center justify-center h-screen">
+    <div class="absolute flex bg-white px-5 py-5">
+        <form @submit.prevent="saveData" class="flex flex-col font-kadwa gap-y-3 items-center justify-center">
+            <h1 class="font-kadwa">Log in</h1>
+            <div>
+                <label class="block text-gray-600 text-sm font-medium mb-2">Email</label>
+                <input type="email" v-model="user.email" id="email" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500" >
+            </div>
+            <div>
+                <label class="block text-gray-600 text-sm font-medium mb-2">Password</label>
+                <input type="password" v-model="user.password" id="password" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Log In</button>
             <span>Don't have an account?<router-link :to="{name: 'Register'}">Register Here</router-link></span>
         </form>
     </div>
@@ -60,6 +63,9 @@ export default {
     background-image: url('/img/Background.png');
     background-size: cover;
     background-position: center center;
-    min-height: 100vh; /* This makes sure the div takes up the full height of the viewport */
+    min-height: 100vh; 
 }
+/* .form {
+    font-family: 'Kadwa', 'Istok Web', sans-serif;
+} */
 </style>

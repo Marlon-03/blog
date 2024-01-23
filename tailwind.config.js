@@ -5,7 +5,12 @@ export default {
     "./resources/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'kadwa': ['Kadwa', 'sans-serif'],
+        'istok-web': ['Istok Web', 'sans-serif']
+      }
+    },
   },
   plugins: [],
 }
