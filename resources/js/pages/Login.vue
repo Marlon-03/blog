@@ -1,4 +1,5 @@
 <template>
+    <div class="background">
     <div className="flex mx-auto items-center justify-center h-screen">
         <form @submit.prevent="saveData" className="flex flex-col">
             <label className="block text-gray-600 text-sm font-medium mb-2">Email</label>
@@ -11,6 +12,7 @@
             <span>Don't have an account?<router-link :to="{name: 'Register'}">Register Here</router-link></span>
         </form>
     </div>
+</div>
 </template>
 
 <script>
@@ -54,8 +56,10 @@ export default {
 </script>
 
 <style scoped>
-/* div{
-    width:400px;
-    height:500px;
-} */
+.background {
+    background-image: url('/img/Background.png');
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh; /* This makes sure the div takes up the full height of the viewport */
+}
 </style>
