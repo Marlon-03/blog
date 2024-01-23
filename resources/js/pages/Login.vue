@@ -3,12 +3,14 @@
     <div class="absolute flex bg-white px-5 py-5">
         <form @submit.prevent="saveData" class="flex flex-col gap-y-3 items-center justify-center">
             <h1 class="font-kadwa font-bold decoration-black text-2xl">Log in</h1>
+
             <div class="flex">
                 <img :src="EmailIcon">
            <input type="email" v-model="user.email" id="email" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500" >
             </div>
-            <div>
-                <label class="block text-gray-600 text-sm font-medium mb-2">Password</label>
+
+            <div class="flex">
+               <img :src="PasswordIcon">
                 <input type="password" v-model="user.password" id="password" class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
             </div>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Log In</button>
@@ -20,11 +22,13 @@
 
 <script>
 import EmailIcon from '../../../public/img/email.svg';
+import PasswordIcon from '../../../public/img/password.svg';
 export default {
     emits: ['showNavbar'],
     data(){
         return{
             EmailIcon,
+            PasswordIcon,
             user:{
                 email: '',
                 password: '',
