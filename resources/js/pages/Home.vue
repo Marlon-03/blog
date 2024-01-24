@@ -16,16 +16,23 @@
         <h1 class="font-kadwa text-4xl font-bold text-center">Latest Blog Posts</h1>
 
         <div class="cards-blog latest-blog flex justify-around">
-            <div class="card-blog-content" v-for="post in posts" :key="post.id">
-                <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image">
-                <p>
-                {{ post.created_at }}
-                <span>Written by {{ post.user }}</span>
-                </p>
-                <h4>
-                    <a href="single-blog.html"></a>
-                    <router-link :to="{name: 'SingleBlog', params: {slug: post.slug},}">{{ post.title }}</router-link>
-                </h4>
+            <div class="card-blog-content flex flex-col items-center bg-white rounded-lg"  v-for="post in posts" :key="post.id">
+                <div>
+                <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-96">
+                </div>
+
+                <div>
+                    <h4 class="font-bold">
+                        <a href="single-blog.html"></a>
+                        <router-link :to="{name: 'SingleBlog', params: {slug: post.slug},}">{{ post.title }}</router-link>
+                    </h4>
+                    {{ post.body }}
+                    <p>
+                    {{ post.created_at }}
+                    <span>Written by {{ post.user }}</span>
+                    </p>
+
+                </div>
             </div>
         </div>   
     </div>
