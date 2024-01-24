@@ -7,8 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        'istok-web': ['Istok Web'],
         'kadwa': ['Kadwa'],
-        'istok-web': ['Istok Web']
+
       }
     },
   },

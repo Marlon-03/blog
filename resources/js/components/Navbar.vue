@@ -1,5 +1,5 @@
 <template>
-    <div className="flex justify-around items-center py-4 bg-slate-600">
+    <div className="flex justify-around items-center py-4 bg-[#58AB91]">
         <div className="flex items-center">
             <img src="../../img/vite.png" alt="Logo" class="h-10 w-auto" />
         </div>
