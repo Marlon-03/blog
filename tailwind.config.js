@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        'custom': '1240px',
+      },
       fontFamily: {
         'istok-web': ['Istok Web'],
         'kadwa': ['Kadwa'],
