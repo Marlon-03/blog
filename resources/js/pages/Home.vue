@@ -13,30 +13,34 @@
     </div>
     <div class=" bg-[#F2F1E9]">
     <div class="py-20 max-w-custom mx-auto">
-        <h1 class="font-kadwa text-4xl font-bold text-center">Latest Blog Posts</h1>
+        <h1 class="font-kadwa text-4xl font-bold text-center mb-10">Latest Blog Posts</h1>
 
         <div class="cards-blog latest-blog flex justify-around">
-            <div class="card-blog-content flex flex-col items-center bg-white rounded-lg"  v-for="post in posts" :key="post.id">
-                <div>
-                <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-96">
+            <div class="card-blog-content flex flex-col items-center bg-white rounded-lg md:w-[377px] my-4" v-for="post in posts.slice(0, 3)" :key="post.id">
+
+                <div class="w-full">
+                     <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-48 object-cover">
                 </div>
 
-                <div>
+                <div class="w-full px-5 py-5 ">
                     <h4 class="font-bold">
                         <a href="single-blog.html"></a>
                         <router-link :to="{name: 'SingleBlog', params: {slug: post.slug},}">{{ post.title }}</router-link>
                     </h4>
-                    {{ post.body }}
-                    <p>
-                    {{ post.created_at }}
-                    <span>Written by {{ post.user }}</span>
-                    </p>
+                    <div class="line-clamp-2 overflow-hidden overflow-ellipsis">
+                    {{ post.body }}</div>
+                    <div class="line-1 h-px bg-[#D9D9D9] my-1.5"></div>
+
+                    <div class="flex justify-between">
+                        <span>Written by {{ post.user }}</span>
+                        {{ formatDate(post.created_at)}}
+                    </div>
 
                 </div>
             </div>
         </div>   
     </div>
-</div>
+    </div>
 </template>
 
 <script>
@@ -55,8 +59,15 @@ export default{
         }).catch((error) => {
             console.log(error);
         });
-    }
-    }
+    },
+
+    methods: {
+  formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+}
+}
 </script> 
 
 <style scoped>
