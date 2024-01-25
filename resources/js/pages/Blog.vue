@@ -1,22 +1,25 @@
 <template>
-    <h1>this is blog page</h1>
-    <div>
-    <div>
-        <form  @submit.prevent>
-            <input type="text" placeholder="Search" v-model="title">
-            <button @click="searchPosts">Search</button>
-        </form>
-    </div>
+<div class="flex justify-around bg-[#F2F1E9] pt-10 pb-10">
+    <div></div>
 
     <div class="categories">
-        <ul>
+        <ul class="flex  gap-x-4">
             <li><a href="#" @click="fetchAll()">All</a></li>
             <li v-for="category in categories" :key="category.id">
                 <a href="#" @click="filterByCategory(category.name)">{{ category.name }}</a>
-
             </li>
         </ul>
     </div>
+
+    <div>
+
+        <form @submit.prevent>
+            <input type="text" v-model="title" class=" rounded-lg h-9 ">
+            <button @click="searchPosts">Search</button>
+        </form>
+    </div>
+</div>
+
     <section class="cards-blog latest-blog">
         <div class="card-blog-content" v-for="post in posts" :key="post.id">
             <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image">
@@ -33,21 +36,23 @@
     </section>
     <h3 v-if="!posts.length">NO MATCH WAS FOUND</h3>
 
-    <div class="pagination">
+    <div class="pagination" v-if="posts.length">
         <a href="#" v-for="(link, index) in links" :key="index"
         v-html="link.label" :class="{active: link.active, disabled: !link.url}"
         @click="changePage(link)"></a>
     </div>
-    </div>
+
 </template>
 
 <script>
 import axios from 'axios';
+import SearchIcon from '../../../public/img/search.svg';
 
 export default{
     emits: ['showNavbar'], 
     data(){
         return{
+            SearchIcon,
             posts: [],
             categories: [],
             title: '',
