@@ -1,47 +1,60 @@
 <template>
-<div class="flex justify-around bg-[#F2F1E9] pt-10 pb-10">
-    <div></div>
+<div class=" bg-[#F2F1E9]">
+    <div class="py-20  max-w-custom mx-auto">
+        <div class="flex justify-around bg-[#F2F1E9] pb-5">
+            <div></div>
 
-    <div class="categories">
-        <ul class="flex  gap-x-4">
-            <li><a href="#" @click="fetchAll()">All</a></li>
-            <li v-for="category in categories" :key="category.id">
-                <a href="#" @click="filterByCategory(category.name)">{{ category.name }}</a>
-            </li>
-        </ul>
-    </div>
+            <div class="categories">
+                <ul class="flex  gap-x-4">
+                    <li><a href="#" @click="fetchAll()">All</a></li>
+                    <li v-for="category in categories" :key="category.id">
+                        <a href="#" @click="filterByCategory(category.name)">{{ category.name }}</a>
+                    </li>
+                </ul>
+            </div>
 
-    <div>
-
-        <form @submit.prevent>
-            <input type="text" v-model="title" class=" rounded-lg h-9 ">
-            <button @click="searchPosts">Search</button>
-        </form>
-    </div>
-</div>
-
-    <section class="cards-blog latest-blog">
-        <div class="card-blog-content" v-for="post in posts" :key="post.id">
-            <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image">
-            <p>
-            {{ post.created_at }}
-            <span>Written by{{ post.user }}</span>
-            </p>
-            <h4>
-
-                <router-link :to="{name: 'SingleBlog', params: {slug: post.slug},}">{{ post.title }}</router-link>
-            </h4>
+            <div>
+                <form @submit.prevent>
+                    <input type="text" v-model="title" class=" rounded-lg h-9 ">
+                    <button @click="searchPosts">Search</button>
+                </form>
+            </div>
         </div>
 
-    </section>
-    <h3 v-if="!posts.length">NO MATCH WAS FOUND</h3>
+        <div class="cards-blog latest-blog grid-container flex justify-around">
+            <div class="card-blog-content flex flex-col items-center bg-white rounded-lg md:w-[377px] my-4" v-for="post in posts.slice(0, 3)" :key="post.id">
 
-    <div class="pagination" v-if="posts.length">
-        <a href="#" v-for="(link, index) in links" :key="index"
-        v-html="link.label" :class="{active: link.active, disabled: !link.url}"
-        @click="changePage(link)"></a>
+                <div class="w-full">
+                     <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-48 object-cover">
+                </div>
+
+                <div class="w-full px-5 py-5 ">
+                    <h4 class="font-bold">
+                        <a href="single-blog.html"></a>
+                        <router-link :to="{name: 'SingleBlog', params: {slug: post.slug},}">{{ post.title }}</router-link>
+                    </h4>
+                    <div class="line-clamp-2 overflow-hidden overflow-ellipsis">
+                    {{ post.body }}</div>
+                    <div class="line-1 h-px bg-[#D9D9D9] my-1.5"></div>
+
+                    <div class="flex justify-between">
+                        <span>Written by {{ post.user }}</span>
+                        {{ formatDate(post.created_at)}}
+                    </div>
+
+                </div>
+            </div>
+        </div> 
+
+        <h3 v-if="!posts.length">NO MATCH WAS FOUND</h3>
+
+        <div class="pagination" v-if="posts.length">
+            <a href="#" v-for="(link, index) in links" :key="index"
+            v-html="link.label" :class="{active: link.active, disabled: !link.url}"
+            @click="changePage(link)"></a>
+        </div>
     </div>
-
+</div>
 </template>
 
 <script>
@@ -74,6 +87,11 @@ export default{
             .catch((error) => {
                 console.log(error);
             });
+        },
+
+        formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
         },
 
         changePage(link){
@@ -136,3 +154,11 @@ export default{
     }
     }
 </script> 
+
+<style scoped>
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(377px, 1fr));
+    gap: 1rem;
+}
+</style>
