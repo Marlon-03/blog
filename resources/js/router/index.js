@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+
 // global
 import Home from '../pages/Home.vue';
 import About from '../pages/About.vue';
@@ -132,10 +133,12 @@ const routes = [
 
 ];
 
+
 const router = createRouter({
     history: createWebHistory(),
     routes,
 });
+
 
 router.beforeEach((to, from, next) => {
     const authenticated = localStorage.getItem("authenticated");
