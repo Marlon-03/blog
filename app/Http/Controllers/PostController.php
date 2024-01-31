@@ -23,7 +23,7 @@ class PostController extends Controller
                       ->orWhere('body', 'LIKE', '%'.$request->search.'%');
             })->latest()->paginate(4)->withQueryString());
         }
-        return PostResource::collection(Post::where('status', 2)->latest()->paginate(4));
+        return PostResource::collection(Post::where('status', 2)->latest()->paginate(6));
     }
 
     public function store(Request $request)

@@ -15,14 +15,14 @@
 
             <div>
                 <form @submit.prevent>
-                    <input type="text" v-model="title" class=" rounded-lg h-9 ">
-                    <button @click="searchPosts">Search</button>
+                    <input type="text" v-model="title" class=" rounded-lg h-9 pl-2">
+                    <button @click="searchPosts" class="text-white font-semibold ml-2 bg-[#ab5872] px-2.5 py-1.5 rounded-lg">Search</button>
                 </form>
             </div>
         </div>
 
         <div class="cards-blog latest-blog grid-container flex justify-around">
-            <div class="card-blog-content flex flex-col items-center bg-white rounded-lg md:w-[377px] my-4" v-for="post in posts.slice(0, 3)" :key="post.id">
+            <div class="card-blog-content flex flex-col items-center bg-white rounded-lg md:w-[377px] my-4" v-for="post in posts.slice(0, 6)" :key="post.id">
 
                 <div class="w-full">
                      <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-48 object-cover">
@@ -48,7 +48,7 @@
 
         <h3 v-if="!posts.length">NO MATCH WAS FOUND</h3>
 
-        <div class="pagination" v-if="posts.length">
+        <div class="pagination flex justify-center pt-5" v-if="posts.length">
             <a href="#" v-for="(link, index) in links" :key="index"
             v-html="link.label" :class="{active: link.active, disabled: !link.url}"
             @click="changePage(link)"></a>
