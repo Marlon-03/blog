@@ -1,5 +1,6 @@
 <template>
     <section class="single-blog-post">
+        <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image">
         <h1>{{ post.title }}</h1>
         <p>
             {{ post.created_at }}
