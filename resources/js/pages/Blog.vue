@@ -33,10 +33,10 @@
         </div>
 
         <div class="cards-blog latest-blog grid-container flex justify-around">
-            <div class="card-blog-content flex flex-col items-center bg-white rounded-lg md:w-[377px] my-4" v-for="post in posts.slice(0, 6)" :key="post.id">
+            <div class="card-blog-content flex flex-col items-center bg-white rounded-lg md:w-[350px] my-4" v-for="post in posts.slice(0, 6)" :key="post.id">
 
                 <div class="w-full">
-                     <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-48 object-cover">
+                     <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-48 object-cover rounded-t">
                 </div>
 
                 <div class="w-full px-5 py-5 ">
