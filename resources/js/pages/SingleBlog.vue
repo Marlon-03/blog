@@ -15,25 +15,25 @@
     <div class="line-1 h-px bg-[#D9D9D9] my-1.5"></div>
     <h1 class="font-kadwa text-4xl font-bold text-center mb-10 pt-5">Related Posts</h1>
     <div class="related-posts flex justify-around">
-<router-link class="card-blog-content flex flex-col items-center bg-white rounded-lg md:w-[350px] my-4" 
-             v-for="relatedPost in relatedPosts.slice(0, 3)" 
-             :key="relatedPost.id"
-             :to="{name: 'SingleBlog', params: {slug: relatedPost.slug}}">
-    <div class="w-full">
-        <img :src="`${relatedPost.imagePath}`" alt="Post images" loading="lazy" class="w-full h-48 object-cover rounded-t">
-    </div>
-    <div class="w-full px-5 py-5">
-        <h4 class="font-bold">{{ relatedPost.title }}</h4>
-        <div class="line-clamp-2 overflow-hidden overflow-ellipsis">
-            {{ relatedPost.body }}
+    <router-link class="card-blog-content flex flex-col items-center bg-white rounded-lg md:w-[350px] my-4" 
+                v-for="relatedPost in relatedPosts.slice(0, 3)" 
+                :key="relatedPost.id"
+                :to="{name: 'SingleBlog', params: {slug: relatedPost.slug}}">
+        <div class="w-full">
+            <img :src="`${relatedPost.imagePath}`" alt="Post images" loading="lazy" class="w-full h-48 object-cover rounded-t">
         </div>
-        <div class="line-1 h-px bg-[#D9D9D9] my-1.5"></div>
-        <div class="flex justify-between">
-            <span>Written by {{ relatedPost.user }}</span>
-            {{ formatDate(relatedPost.created_at)}}
+        <div class="w-full px-5 py-5">
+            <h4 class="font-bold">{{ relatedPost.title }}</h4>
+            <div class="line-clamp-2 overflow-hidden overflow-ellipsis">
+                {{ relatedPost.body }}
+            </div>
+            <div class="line-1 h-px bg-[#D9D9D9] my-1.5"></div>
+            <div class="flex justify-between">
+                <span>Written by {{ relatedPost.user }}</span>
+                {{ formatDate(relatedPost.created_at)}}
+            </div>
         </div>
-    </div>
-</router-link>
+    </router-link>
     </div>
 </section>
 </template>

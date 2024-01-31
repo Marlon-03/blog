@@ -16,29 +16,28 @@
         <h1 class="font-kadwa text-4xl font-bold text-center mb-10">Latest Blog Posts</h1>
 
         <div class="cards-blog latest-blog flex justify-around">
-            <div class="card-blog-content flex flex-col items-center bg-white rounded-lg md:w-[350px] my-4" v-for="post in posts.slice(0, 3)" :key="post.id">
+        <router-link class="card-blog-content flex flex-col items-center bg-white rounded-lg md:w-[350px] my-4" 
+                    v-for="post in posts.slice(0, 3)" 
+                    :key="post.id"
+                    :to="{name: 'SingleBlog', params: {slug: post.slug}}">
+            <div class="w-full">
+                <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-48 object-cover">
+            </div>
 
-                <div class="w-full">
-                     <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-48 object-cover">
+            <div class="w-full px-5 py-5 ">
+                <h4 class="font-bold">{{ post.title }}</h4>
+                <div class="line-clamp-2 overflow-hidden overflow-ellipsis">
+                    {{ post.body }}
                 </div>
+                <div class="line-1 h-px bg-[#D9D9D9] my-1.5"></div>
 
-                <div class="w-full px-5 py-5 ">
-                    <h4 class="font-bold">
-                        <a href="single-blog.html"></a>
-                        <router-link :to="{name: 'SingleBlog', params: {slug: post.slug},}">{{ post.title }}</router-link>
-                    </h4>
-                    <div class="line-clamp-2 overflow-hidden overflow-ellipsis">
-                    {{ post.body }}</div>
-                    <div class="line-1 h-px bg-[#D9D9D9] my-1.5"></div>
-
-                    <div class="flex justify-between">
-                        <span>Written by {{ post.user }}</span>
-                        {{ formatDate(post.created_at)}}
-                    </div>
-
+                <div class="flex justify-between">
+                    <span>Written by {{ post.user }}</span>
+                    {{ formatDate(post.created_at)}}
                 </div>
             </div>
-        </div>   
+        </router-link>
+        </div>
     </div>
     </div>
 </template>
