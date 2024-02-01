@@ -1,7 +1,7 @@
 <template>
     <div className="flex justify-around items-center py-4 bg-[#58AB91]">
         <div className="flex items-center">
-            <img src="../../img/vite.png" alt="Logo" class="h-10 w-auto" />
+            <img src="../../img/vite.png" alt="Logo" class="h-10 w-10" />
         </div>
         <div className="space-x-10 text-white font-semibold text-xl">
             <router-link :to="{name: 'Home'}">Home</router-link>
