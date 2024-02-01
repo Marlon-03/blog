@@ -7,28 +7,87 @@
         </div>
     </div>
 
-    <div class="bg-[#F2F1E9] flex w-full pt-20 justify-center">
-        <div class="w-11/12 flex bg-slate-400 justify-around">
-            <div class="left w-full px-10 py-5">
-                <h1>HI At 21, I quit my corporate job in the Philippines
-to pursue my dreams of traveling the world and 
-building my own remote business. It all seemed 
-crazy, especially because I was young and broke
- — but after a few months… I made it all happen!
-Today, I am a successful digital nomad 
-(online entrepreneur) and solo female traveler
-(+blogger and vlogger) who has been to all 
-7 continents.</h1>
+    <div class="bg-[#F2F1E9] w-full py-20 px-10">
+        <div class="tabs w-full flex justify-center gap-5 pb-8">
+            <div class="tab font-kadwa font-semibold text-3xl" 
+                 v-for="(tab, index) in tabs" 
+                 :key="index" 
+                 @click="activeTab = tab"
+                 :class="{ active: activeTab === tab }">
+                {{ tab }}
             </div>
+        </div>
 
-            <div class="right w-full px-10 py-5">
-                <img src="../../../public/img/king.jpg" alt="About me Image"/>
+        <div class="tab-content bg-white rounded-md px-5 py-5">
+            <div v-if="activeTab === 'My Story'" class="flex">
+                <div class="w-[40%]">
+                    <img src="../../../public/img/king.jpg"
+                    class="w-96 h-80 object-cover"/>
+                </div>
+                <div class="w-[60%]">
+                    <p class="text-lg font-istok-web indent">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus vel magni enim eligendi, 
+                        dolorem id fugit asperiores, distinctio praesentium voluptate ad modi unde et fugiat saepe 
+                        perspiciatis nemo. Asperiores ex ut voluptate. Illum mollitia nobis cum suscipit id fuga autem.<br>
+                    </p>
+                    <p class="text-lg font-istok-web indent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga distinctio fugiat eos, tempora explicabo nobis.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga distinctio fugiat eos, tempora explicabo nobis. 
+                        Iusto ipsum fugit accusantium inventore voluptatibus, laborum odit, doloremque cupiditate ea maxime, totam molestiae laboriosam.
+                    </p>
+                </div>
             </div>
+            <div v-if="activeTab === 'Experience'" class="flex">
+                <div class="w-[40%]">
+                    <img src="../../../public/img/rook.jpeg"
+                    class="w-96 h-80 object-cover"/>
+                </div>
+                <div class="w-[60%]">
+                    <p class="text-lg font-istok-web indent">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus vel magni enim eligendi, 
+                        dolorem id fugit asperiores, distinctio praesentium voluptate ad modi unde et fugiat saepe 
+                        perspiciatis nemo. Asperiores ex ut voluptate. Illum mollitia nobis cum suscipit id fuga autem.<br>
+                    </p>
+                    <p class="text-lg font-istok-web indent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga distinctio fugiat eos, tempora explicabo nobis.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga distinctio fugiat eos, tempora explicabo nobis. 
+                        Iusto ipsum fugit accusantium inventore voluptatibus, laborum odit, doloremque cupiditate ea maxime, totam molestiae laboriosam.
+                    </p>
+                </div>
+            </div>
+            <div v-if="activeTab === 'Education'" class="flex">
+                <div class="w-[40%]">
+                    <img src="../../../public/img/knight.jpeg"
+                    class="w-96 h-80 object-cover"/>
+                </div>
+                <div class="w-[60%]">
+                    <p class="text-lg font-istok-web indent">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus vel magni enim eligendi, 
+                        dolorem id fugit asperiores, distinctio praesentium voluptate ad modi unde et fugiat saepe 
+                        perspiciatis nemo. Asperiores ex ut voluptate. Illum mollitia nobis cum suscipit id fuga autem.<br>
+                    </p>
+                    <p class="text-lg font-istok-web indent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga distinctio fugiat eos, tempora explicabo nobis.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga distinctio fugiat eos, tempora explicabo nobis. 
+                        Iusto ipsum fugit accusantium inventore voluptatibus, laborum odit, doloremque cupiditate ea maxime, totam molestiae laboriosam.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="flex items-center justify-center">
+            <!-- change the path to your cv -->
+            <a href="../../../public/img/king.jpg" download class="btn-download">Portfolio</a>
+            <router-link to="/contact" class="btn-contact">Contact Me</router-link>
         </div>
     </div>
 </template>
 
 <script>
+export default {
+    data() {
+        return {
+            tabs: ['My Story', 'Experience', 'Education'],
+            activeTab: 'My Story'
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -37,5 +96,17 @@ Today, I am a successful digital nomad
     background-size: cover;
     background-position: center center;
     min-height: 50vh; 
+}
+
+.tab {
+    cursor: pointer;
+    padding: 10px;
+}
+.tab.active {
+    border-bottom: 2px solid #58AB91;
+}
+
+.indent {
+    text-indent: 2em;
 }
 </style>
