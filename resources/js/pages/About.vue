@@ -68,15 +68,14 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div>
-        <div class="flex items-center justify-center">
+        <div class="flex items-center justify-center pt-10">
             <!-- change the path to your cv -->
-            <a href="../../../public/img/king.jpg" download class="btn-download">Portfolio</a>
+            <a href="../../../public/img/king.jpg" download class="btn-download text-semibold">Portfolio</a>
             <router-link to="/contact" class="btn-contact">Contact Me</router-link>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -105,8 +104,24 @@ export default {
 .tab.active {
     border-bottom: 2px solid #58AB91;
 }
-
 .indent {
     text-indent: 2em;
+}
+
+.btn-download {
+    padding: 10px 20px;
+    background-color: #58AB91;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    margin-right: 30px;
+}
+
+.btn-contact {
+    padding: 10px 20px;
+    background-color: #AB5872;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
 }
 </style>
