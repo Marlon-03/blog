@@ -1,13 +1,34 @@
 <template>
-    <h1>this is admin dashboard page</h1>
-    <h1>{{ name }}</h1>
-    <button @click="logout">Log Out</button>
-    <router-link :to="{name: 'CreatePost'}">Create Post</router-link>
-    
-    <router-link :to="{name: 'CategoriesCreate'}">Create Categories</router-link>
-    <router-link :to="{name: 'AdminCategoriesList'}">Category List</router-link>
-    <router-link :to="{name: 'AdminApprovalPosts'}">Approval Posts</router-link>
-    <router-link :to="{name: 'PostsList'}">Post Lists</router-link>
+    <div>
+    <div class="flex justify-between px-20 py-5">
+        <h1 class="font-kadwa font-medium text-xl">Hi, Admin  {{ name }}</h1>
+        <button @click="logout" class="font-kadwa font-medium text-xl">Log Out</button>
+    </div>
+    <div class="line-2 h-px bg-black my-1.5"></div>
+    </div>
+
+    <div>
+        <div>
+            <router-link :to="{name: 'CreatePost'}">Create Post</router-link>
+        </div>
+
+        <div>
+            <router-link :to="{name: 'CategoriesCreate'}">Create Categories</router-link>
+        </div>
+
+        <div>
+            <router-link :to="{name: 'AdminCategoriesList'}">Category List</router-link>
+        </div>
+
+        <div>
+            <router-link :to="{name: 'AdminApprovalPosts'}">Approval Posts</router-link>
+        </div>
+
+        <div>
+            <router-link :to="{name: 'PostsList'}">Post Lists</router-link>
+        </div>
+        
+    </div>
 </template>
 
 

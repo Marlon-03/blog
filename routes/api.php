@@ -69,3 +69,6 @@ Route::get('dashboard-posts', [DashboardPostController::class, 'index']);
 Route::get('admin/posts', [PostController::class, 'adminPosts']);
 
 Route::put('admin/posts/{id}/status', [PostController::class, 'updateStatus']);
+
+// contact route
+Route::post('/contact', [ContactController::class, 'sendEmail']);
