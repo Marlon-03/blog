@@ -7,7 +7,7 @@
     <div class="line-2 h-px bg-black my-1.5"></div>
     </div>
 
-    <div>
+    <div> 
         <div>
             <router-link :to="{name: 'CreatePost'}">Create Post</router-link>
         </div>
