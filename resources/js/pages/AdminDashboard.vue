@@ -7,7 +7,7 @@
     <div class="line-2 h-px bg-black my-1.5"></div>
     </div>
 
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap justify-center">
         <router-link class="bg-[#58AB91] rounded-md" :to="{name: 'CategoriesCreate'}">
             <div class="justify-center items-center flex-col flex px-4 py-8">
                 <img :src="createIcon" class="w-10 h-10">
@@ -24,21 +24,22 @@
 
         <router-link class="bg-[#58AB91] rounded-md" :to="{name: 'AdminApprovalPosts'}">
             <div class="justify-center items-center flex-col flex px-4 py-8">
-                <img :src="createIcon" class="w-10 h-10">
+                <img :src="notesIcon" class="w-10 h-10">
                 <p class="font-istok-web font-bold text-white text-2xl">Approval posts</p>
             </div>
         </router-link>
 
         <router-link class="bg-[#58AB91] rounded-md" :to="{name: 'CreatePost'}">
             <div class="justify-center items-center flex-col flex px-4 py-8">
-                <img :src="createIcon" class="w-10 h-10">
+                <img :src="writeIcon" class="w-10 h-10">
                 <p class="font-istok-web font-bold text-white text-2xl">Write a post</p>
             </div>
         </router-link>
 
-        <router-link class="bg-[#58AB91] rounded-md" :to="{name: 'PostsList'}">Post Lists
+        <router-link class="bg-[#58AB91] rounded-md" :to="{name: 'PostsList'}">
             <div class="justify-center items-center flex-col flex px-4 py-8">
-                <img :src="createIcon" class="w-10 h-10">
+                <!-- <img :src="createIcon" class="w-10 h-10"> -->
+                <p class="font-istok-web font-bold text-white text-2xl">{{ postCount }}</p>
                 <p class="font-istok-web font-bold text-white text-2xl">Your posts</p>
             </div>
         </router-link>
@@ -58,7 +59,8 @@ export default{
             name: '',
             createIcon,
             notesIcon,
-            writeIcon
+            writeIcon,
+            postCount: 0
         };
     },
     mounted() {
