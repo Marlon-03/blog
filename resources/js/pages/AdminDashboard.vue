@@ -78,12 +78,23 @@ export default{
             console.log(error);
         });
     },
+    created(){
+        this.fetchPostCount();
+    },
     methods:{
         logout(){
             axios.post('/api/logout').then((response)=>{
                 this.$router.push({name: 'Home'});
                 localStorage.removeItem('authenticated');
                 this.$emit('showNavbar');
+            }).catch((error)=>{
+                console.log(error);
+            })
+        },
+
+        fetchPostCount(){
+            axios.get('/api/posts/count').then((response)=>{
+                this.postCount = response.data.count;
             }).catch((error)=>{
                 console.log(error);
             })

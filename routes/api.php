@@ -72,3 +72,6 @@ Route::put('admin/posts/{id}/status', [PostController::class, 'updateStatus']);
 
 // contact route
 Route::post('/contact', [ContactController::class, 'sendEmail']);
+
+//post count
+Route::get('/posts/count', [PostController::class, 'count']);
