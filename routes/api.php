@@ -57,6 +57,11 @@ Route::middleware('auth:sanctum')->delete('/posts/{post:slug}', [PostController:
 
 Route::get('posts', [PostController::class, 'index']);
 
+//post count
+Route::get('posts/count', [PostController::class, 'count']);
+
+Route::get('posts/totalCount', [PostController::class, 'totalCount']);
+
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('related-posts/{post:slug}', [RelatedPostController::class, 'index']);
@@ -73,5 +78,9 @@ Route::put('admin/posts/{id}/status', [PostController::class, 'updateStatus']);
 // contact route
 Route::post('/contact', [ContactController::class, 'sendEmail']);
 
-//post count
-Route::get('/posts/count', [PostController::class, 'count']);
+
+
+
+
+
+

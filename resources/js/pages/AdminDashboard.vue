@@ -24,7 +24,7 @@
 
         <router-link class="bg-[#58AB91] rounded-md" :to="{name: 'AdminApprovalPosts'}">
             <div class="justify-center items-center flex-col flex px-4 py-8">
-                <img :src="notesIcon" class="w-10 h-10">
+                <p class="font-istok-web font-bold text-white text-2xl">{{ totalCount }}</p>
                 <p class="font-istok-web font-bold text-white text-2xl">Approval posts</p>
             </div>
         </router-link>
@@ -38,7 +38,6 @@
 
         <router-link class="bg-[#58AB91] rounded-md" :to="{name: 'PostsList'}">
             <div class="justify-center items-center flex-col flex px-4 py-8">
-                <!-- <img :src="createIcon" class="w-10 h-10"> -->
                 <p class="font-istok-web font-bold text-white text-2xl">{{ postCount }}</p>
                 <p class="font-istok-web font-bold text-white text-2xl">Your posts</p>
             </div>
@@ -60,7 +59,8 @@ export default{
             createIcon,
             notesIcon,
             writeIcon,
-            postCount: 0
+            postCount: 0,
+            totalCount: 0
         };
     },
     mounted() {
@@ -80,6 +80,14 @@ export default{
     },
     created(){
         this.fetchPostCount();
+
+        axios.get('http://127.0.0.1:8000/api/posts/totalCount')
+            .then(response => {
+                this.totalCount = response.data.totalCount;
+            })
+            .catch(error => {
+                console.error(error);
+            });
     },
     methods:{
         logout(){

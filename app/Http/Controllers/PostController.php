@@ -128,8 +128,15 @@ class PostController extends Controller
         return response()->json(['message' => 'Post status updated.']);
     }
 
+
+    public function totalCount()
+    {
+        $count = Post::count();
+        return response()->json(['totalCount' => $count]);
+    }
     public function count()
     {
+       
         $count = Post::where('user_id', auth()->id())->count();
         return response()->json(['count' => $count]);
     }
