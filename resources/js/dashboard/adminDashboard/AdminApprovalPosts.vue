@@ -1,9 +1,10 @@
 <template>
     <h1>Admin Approval Post</h1>
-    <table>
+    <table class="table-fixed">
         <thead>
             <tr>
                 <th>Title</th>
+                <th>Category</th>
                 <th>Created At</th>
                 <th>Status</th>
                 <th>Actions</th>

@@ -72,7 +72,7 @@
         <div class="flex items-center justify-center pt-10">
             <!-- change the path to your cv -->
             <a href="../../../public/img/king.jpg" download class="btn-download text-semibold">Portfolio</a>
-            <router-link to="/contact" class="btn-contact">Contact Me</router-link>
+            <router-link :to="{name:'Contact'}" class="btn-contact">Contact Me</router-link>
         </div>
     </div>
 

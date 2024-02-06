@@ -110,4 +110,3 @@ export default {
     min-height: 50vh; 
 }
 </style>
-d
