@@ -1,5 +1,5 @@
 <template>
-<div class="mx-auto flex justify-center align-center items-center">
+<div class="mx-auto flex justify-center align-center items-center h-96">
   <table class="table-auto">
     <thead> 
       <tr>
