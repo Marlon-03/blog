@@ -11,7 +11,7 @@
       </div>
 
       <div>
-        <button type="submit" class="bg-blue-500 px-2 py-2 rounded-md">Create Category</button>
+        <button type="submit" class="bg-blue-500 px-2 py-2 rounded-md font-semibold text-white">Create Category</button>
       </div>
 
       <!-- Display validation errors if present -->
