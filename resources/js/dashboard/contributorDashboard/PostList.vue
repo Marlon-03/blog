@@ -1,27 +1,35 @@
 <template>
-    <h1>Posts List</h1>
-    <table>
+    <div class=" px-10 py-10">
+    <table class="table-fixed w-full">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Created At</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th class="border px-4 py-2">Title</th>
+                <th class="border px-4 py-2">Category</th>
+                <th class="border px-4 py-2">Created At</th>
+                <th class="border px-4 py-2">Status</th>
+                <th class="border px-4 py-2">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="post in posts" :key="post.id">
-                <td>{{ post.title }}</td>
-                <td>{{ post.category.name }}</td>
-                <td>{{ post.created_at }}</td>
-                <td>{{ getStatusText(post.status) }}</td>
-                <td>
-                    <router-link :to="{name: 'EditPosts', params: {slug: post.slug}}">Edit</router-link>
-                    <button @click="destroy(post.slug)">Delete</button>
+            <tr v-for="(post, index) in posts" :key="post.id" :class="index % 2 ? 'bg-green-100' : 'bg-white'" class="text-center">
+                <td class="border px-4 py-2">{{ post.title }}</td>
+                <td class="border px-4 py-2">{{ post.category.name }}</td>
+                <td class="border px-4 py-2">{{ post.created_at }}</td>
+                <td class="border px-4 py-2">
+                    <span class="px-2" :class="{'bg-red-300': post.status === 0, 'bg-yellow-300': post.status === 1, 'bg-green-500': post.status === 2}">
+                        {{ getStatusText(post.status) }}
+                    </span>
+                </td>
+                <td class="border px-4 py-2">
+                    <div class="gap-2 flex justify-center">
+                    <router-link :to="{name: 'EditPosts', params: {slug: post.slug}}" class="bg-yellow-500 px-2 py-2 rounded-md">Edit</router-link>
+                    <button @click="destroy(post.slug)" class="bg-red-500 px-2 py-2 rounded-md">Delete</button>
+                </div>
                 </td>
             </tr>
         </tbody>
     </table>
+    </div>
 </template>
 
 <script>
