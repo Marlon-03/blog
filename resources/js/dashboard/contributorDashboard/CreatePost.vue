@@ -1,29 +1,33 @@
 <template>
-  <div>
-    <h1>Create Post</h1>
-    <form @submit.prevent="submitPost" className="flex flex-col">
-        <label for="">Title</label>
-        <input type="text" v-model="posts.title" id="title">
+  <div class="w-full flex justify-center items-center">
+
+    <form @submit.prevent="submitPost" class="w-4/5 flex flex-col justify-center py-10">
+      <h1 class="font-istok-web font-bold text-center text-4xl">Create a post</h1>
+        <label class="font-semibold">Title</label>
+        <input type="text" v-model="posts.title" id="title"
+        class="rounded-md  border border-t-1 border-l-1 border-r-1 border-b-1 border-gray-300 p-2 focus:outline-none focus:border-[#58AB91] ">
         <br/>
-        <label for="">Image</label>
-        <input type="file" @input="grabFile" id="image" ref="fileInput">
+        <label class="font-semibold">Image</label>
+        <input type="file" @input="grabFile" id="image" ref="fileInput"
+        class="rounded-md  border border-t-1 border-l-1 border-r-1 border-b-1 border-gray-300 p-2 focus:outline-none focus:border-[#58AB91] ">
         <div class="preview">
           <img :src="url" alt="">
         </div>
         <br/>
 
-        <label for="">Category</label>
-        <select v-model="posts.category_id"  id="categories">
+        <label class="font-semibold">Category</label>
+        <select v-model="posts.category_id"  id="categories"
+        class="rounded-md  border border-t-1 border-l-1 border-r-1 border-b-1 border-gray-300 p-2 focus:outline-none focus:border-[#58AB91] ">
             <option disabled value="">Select Options</option>
             <option :value="category.id" v-for="category in categories" :key="category.id">{{ category.name }}</option>
         </select>
         <br/>
 
-        <label for="">Body</label>
+        <label class="font-semibold">Body</label>
         <quill-editor theme="snow" v-model:content="posts.body" contentType="text" />
         <br/>
 
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
         
     </form>
   </div>

@@ -1,20 +1,20 @@
 <template>
-    <router-link :to="{name: 'Dashboard'}">Back</router-link>
-       <table class="table-auto">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody v-for="category in categories" :key="category.id">
-        <tr>
-          <td>{{category.id}}</td>
-          <td>{{category.name}}</td>
-        
-        </tr>
-      </tbody>
-    </table>
+    <div class="mx-auto flex justify-center align-center items-center h-96">
+  <table class="table-auto">
+    <thead> 
+      <tr>
+        <th class="border px-4 py-2">ID</th>
+        <th class="border px-4 py-2">Name</th>
+      </tr>
+    </thead>
+    <tbody v-for="(category, index) in categories" :key="category.id" :class="index % 2 ? 'bg-green-100' : 'bg-white'" class="text-center">
+      <tr>
+        <td class="border px-4 py-2">{{category.id}}</td>
+        <td class="border px-4 py-2">{{category.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
     </template>
     
     <script>

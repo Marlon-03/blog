@@ -1,17 +1,14 @@
 <template>
   <div class="mx-auto flex justify-center align-center items-center h-96">
-    <form @submit.prevent="submitCategory" class="flex gap-5 justify-center items-center">
+    <form @submit.prevent="submitCategory" class="flex  flex-col gap-5 justify-center items-center">
       <div>
-        <label>Category Name</label>
+        <label class="font-istok-web font-bold text-center text-4xl">Create a Category</label>
       </div>
 
-      <div>
-        <input type="text" v-model="category.name" id="name"
-        class="border border-t-1 border-l-1 border-r-1 border-b-1 border-gray-300 p-2 pl-10 focus:outline-none focus:border-[#58AB91] ">
-      </div>
-
-      <div>
-        <button type="submit" class="bg-blue-500 px-2 py-2 rounded-md font-semibold text-white">Create Category</button>
+      <div class="flex gap-5">
+        <input type="text" v-model="category.name" id="name" placeholder="Enter a category"
+        class="rounded-md  border border-t-1 border-l-1 border-r-1 border-b-1 border-gray-300 p-2 focus:outline-none focus:border-[#58AB91] ">
+        <button type="submit" class="bg-blue-500 px-2 py-2 rounded-md font-semibold text-white">Create</button>
       </div>
 
       <!-- Display validation errors if present -->

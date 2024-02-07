@@ -1,18 +1,49 @@
 <template>
-    <h1>this is contributor dashboard page</h1>
-    <h1>{{ name }}</h1>
-    <button @click="logout">Log Out</button>
-    <router-link :to="{name: 'CreatePost'}">Create Post</router-link>
-    <router-link :to="{name: 'ContributorCategoriesList'}">Category List</router-link>
-    <router-link :to="{name: 'PostsList'}">Post List</router-link>
+    <div>
+        <div class="flex justify-between items-center px-20 py-5">
+            <h1 class="font-kadwa font-medium text-xl">Hi, Contributor {{ name }}</h1>
+            <button @click="logout" class="font-kadwa font-medium text-xl bg-[#D9D9D9] px-3 py-2 rounded-md">Log Out</button>
+        </div>
+
+        <div class="line-2 h-px bg-black my-1.5"></div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-7 justify-items-center pt-10">
+        <router-link class="bg-[#58AB91] rounded-md min-w-[300px] min-h-[150px] flex items-center justify-center"  :to="{name: 'CreatePost'}">
+            <div class="justify-center items-center flex-col flex px-4 py-8">
+                <img :src="writeIcon" class="w-10 h-10">
+                <p class="font-istok-web font-bold text-white text-2xl">Write a post</p>
+            </div>
+        </router-link>
+
+        <router-link class="bg-[#58AB91] rounded-md min-w-[300px] min-h-[150px] flex items-center justify-center"  :to="{name: 'ContributorCategoriesList'}">
+            <div class="justify-center items-center flex-col flex px-4 py-8">
+                <img :src="notesIcon" class="w-10 h-10">
+                <p class="font-istok-web font-bold text-white text-2xl">Categories List</p>
+            </div>
+        </router-link>
+
+        <router-link class="bg-[#58AB91] rounded-md min-w-[300px] min-h-[150px] flex items-center justify-center"  :to="{name: 'PostsList'}">
+            <div class="justify-center items-center flex-col flex px-4 py-8">
+                <p class="font-istok-web font-bold text-white text-4xl">{{ postCount }}</p>
+                <p class="font-istok-web font-bold text-white text-2xl">Your posts</p>
+            </div>
+        </router-link>
+    </div>
+
 </template>
 
 <script>
+import writeIcon from '../../../public/img/write.svg';
+import notesIcon from '../../../public/img/notes.svg';
 export default{
     emits: ['showNavbar'], 
     data(){
         return{
             name: '',
+            writeIcon,
+            notesIcon,
+            postCount: 0
         };
     },
     mounted() {
@@ -30,6 +61,9 @@ export default{
         console.log(error);
     });
     },
+    created(){
+        this.fetchPostCount();
+    },
     
     methods:{
         logout(){
@@ -37,6 +71,14 @@ export default{
                 this.$router.push({name: 'Home'});
                 localStorage.removeItem('authenticated');
                 this.$emit('showNavbar');
+            }).catch((error)=>{
+                console.log(error);
+            })
+        },
+
+        fetchPostCount(){
+            axios.get('/api/posts/count').then((response)=>{
+                this.postCount = response.data.count;
             }).catch((error)=>{
                 console.log(error);
             })
