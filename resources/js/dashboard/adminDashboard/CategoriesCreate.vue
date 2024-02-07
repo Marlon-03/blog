@@ -1,5 +1,6 @@
 <template>
-  <div class="mx-auto flex justify-center align-center items-center h-96">
+    <div class="bg-[#F2F1E9] h-screen">
+  <div class="mx-auto flex justify-center align-center items-center h-full">
     <form @submit.prevent="submitCategory" class="flex  flex-col gap-5 justify-center items-center">
       <div>
         <label class="font-istok-web font-bold text-center text-4xl">Create a Category</label>
@@ -17,6 +18,7 @@
       </div>
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -51,3 +53,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.body {
+    height: 100%;
+    overflow: hidden;
+}
+</style>

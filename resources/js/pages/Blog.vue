@@ -39,7 +39,7 @@
                         :key="post.id"
                         :to="{name: 'SingleBlog', params: {slug: post.slug}}">
                 <div class="w-full">
-                    <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-48 object-cover rounded-t">
+                    <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-[200px] object-cover rounded-t">
                 </div>
 
                 <div class="w-full px-5 py-5 ">

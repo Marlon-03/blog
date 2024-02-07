@@ -1,6 +1,8 @@
 <template>
+
+<div class="bg-[#F2F1E9] h-screen">
 <div class="mx-auto flex justify-center align-center items-center h-96">
-  <table class="table-auto">
+  <table class="table-auto bg-white">
     <thead> 
       <tr>
         <th class="border px-4 py-2">ID</th>
@@ -21,6 +23,7 @@
       </tr>
     </tbody>
   </table>
+</div>
 </div>
 </template>
 
