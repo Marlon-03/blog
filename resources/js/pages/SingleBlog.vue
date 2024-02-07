@@ -1,9 +1,9 @@
 <template>
-    <section class="single-blog-post container mx-auto">
-        <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full  h-[450px] object-cover">
-        <div class="container px-20 py-10">
+    <section class="single-blog-post container mx-auto flex justify-center items-center flex-col">
+        <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-[450px] object-scale-down">
+        <div class="container w-4/5 flex flex-col justify-center pt-10">
             <h1 class="text-black font-bold font-istok-web text-4xl">{{ post.title }}</h1>
-            <div class="flex justify-between mb-2">
+            <div class="flex justify-around mb-2">
                 <span>Written by {{ post.user }}</span>
                 <span>{{ formatDate(post.created_at)}}</span>
             </div>

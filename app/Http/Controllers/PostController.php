@@ -59,9 +59,6 @@ class PostController extends Controller
         $post->save();
     }
     public function show(Post $post){
-        if (auth()->user()->id !== $post->user_id){
-            return abort(403);
-        }
         return new PostResource($post);
     }
 

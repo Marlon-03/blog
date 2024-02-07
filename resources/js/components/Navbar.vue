@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showNavbar">
+    <div v-if="showNavbar" >
         <div className="flex justify-around items-center py-4 bg-[#58AB91]">
             <div className="flex items-center">
                 <img src="../../img/vite.png" alt="Logo" class="h-10 w-10" />

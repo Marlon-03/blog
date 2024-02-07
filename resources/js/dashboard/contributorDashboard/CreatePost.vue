@@ -1,7 +1,7 @@
 <template>
+  <div class="bg-[#F2F1E9]">
   <div class="w-full flex justify-center items-center">
-
-    <form @submit.prevent="submitPost" class="w-4/5 flex flex-col justify-center py-10">
+    <form @submit.prevent="submitPost" class="w-4/5 flex flex-col justify-center my-10 px-2 py-2 bg-white">
       <h1 class="font-istok-web font-bold text-center text-4xl">Create a post</h1>
         <label class="font-semibold">Title</label>
         <input type="text" v-model="posts.title" id="title"
@@ -31,6 +31,7 @@
         
     </form>
   </div>
+</div>
 </template>
 
 

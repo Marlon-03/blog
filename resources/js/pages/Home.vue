@@ -20,8 +20,8 @@
                     v-for="post in posts.slice(0, 3)" 
                     :key="post.id"
                     :to="{name: 'SingleBlog', params: {slug: post.slug}}">
-            <div class="w-full">
-                <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-48 object-cover">
+            <div class="w-full blog-pic">
+                <img :src="post.imagePath + '?' + new Date().getTime()" alt="Post image" class="w-full h-[200px] object-cover">
             </div>
 
             <div class="w-full px-5 py-5 ">
@@ -75,5 +75,11 @@ export default{
         background-size: cover;
         background-position: center center;
         min-height: 100vh; 
+    }
+
+    .blog-pic{
+        width: 100%;
+        height: 200px;
+    
     }
 </style>

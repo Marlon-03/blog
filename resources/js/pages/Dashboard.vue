@@ -5,10 +5,11 @@
             <button @click="logout" class="font-kadwa font-medium text-xl bg-[#D9D9D9] px-3 py-2 rounded-md">Log Out</button>
         </div>
 
-        <div class="line-2 h-px bg-black my-1.5"></div>
+        <div class="line-2 h-px bg-black mt-1.5"></div>
     </div>
 
-    <div class="grid grid-cols-3 gap-7 justify-items-center pt-10">
+    <div class="bg-[#F2F1E9] h-screen">
+    <div class="grid grid-cols-3 gap-7 justify-items-center pt-10 ">
         <router-link class="bg-[#58AB91] rounded-md min-w-[300px] min-h-[150px] flex items-center justify-center"  :to="{name: 'CreatePost'}">
             <div class="justify-center items-center flex-col flex px-4 py-8">
                 <img :src="writeIcon" class="w-10 h-10">
@@ -30,6 +31,7 @@
             </div>
         </router-link>
     </div>
+</div>
 
 </template>
 

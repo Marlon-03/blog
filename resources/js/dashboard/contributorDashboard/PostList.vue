@@ -1,6 +1,7 @@
 <template>
+  <div class="bg-[#F2F1E9] h-screen">
     <div class=" px-10 py-10">
-    <table class="table-fixed w-full">
+    <table class="table-fixed w-full bg-white">
         <thead>
             <tr>
                 <th class="border px-4 py-2">Title</th>
@@ -29,6 +30,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
     </div>
 </template>
 
