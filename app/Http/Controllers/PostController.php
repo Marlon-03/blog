@@ -100,9 +100,9 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        if (auth()->user()->id !== $post->user_id){
-            return abort(403);
-        }
+        // if (auth()->user()->id !== $post->user_id){
+        //     return abort(403);
+        // }
 
         return $post->delete();
     }

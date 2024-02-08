@@ -11,17 +11,14 @@
         class="rounded-md  border border-t-1 border-l-1 border-r-1 border-b-1 border-gray-300 p-2 focus:outline-none focus:border-[#58AB91] ">
         <button type="submit" class="bg-blue-500 px-2 py-2 rounded-md font-semibold text-white">Create</button>
       </div>
-
-      <!-- Display validation errors if present -->
-      <div v-if="validationErrors" class="error-messages">
-        <p v-for="(errors, field) in validationErrors" :key="field">{{ errors.join(', ') }}</p>
-      </div>
+  
     </form>
   </div>
 </div>
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 export default {
   emits: ['showNavbar'],
   data() {
@@ -40,15 +37,27 @@ export default {
         .then(response => {
           console.log('Response:', response.data);
           this.category = {};  // Reset the form
+          Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Category created successfully',
+      });
         })
         .catch(error => {
-          console.error('Error:', error);
+        if (error.response && error.response.data && error.response.data.errors) {
+          this.validationErrors = error.response.data.errors;
 
-          if (error.response && error.response.status === 422) {
-            // Display validation errors
-            this.validationErrors = error.response.data.errors;
-          }
-        });
+          const errors = Object.values(this.validationErrors)
+            .flat()
+            .join('\n* ');
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Validation Errors',
+            text: '* ' + errors,
+          });
+        }
+      });
     },
   },
 };

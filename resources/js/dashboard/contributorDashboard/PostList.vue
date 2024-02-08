@@ -50,15 +50,39 @@ export default {
     },
 
     methods: {
-        destroy(slug){
-            axios.delete('/api/posts/' + slug)
-            .then((response) => {
-                this.fetchPosts();
-                console.log(response);
-                console.log('Post deleted successfully');
-                this.$router.push({name: 'PostsList'});
-            }).catch((error) => {
-                console.log(error);
+        destroy(slug) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                axios.delete('/api/posts/' + slug)
+                .then((response) => {
+                    // Show a success message with SweetAlert2
+                    Swal.fire({
+                    title: "Deleted!",
+                    text: "Your post has been deleted.",
+                    icon: "success"
+                    });
+
+                    this.fetchPosts();
+                    this.$router.push({name: 'PostsList'});
+                }).catch((error) => {
+                    console.log(error);
+
+                    // Show an error message with SweetAlert2
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while deleting the post',
+                    });
+                });
+                }
             });
         },
 

@@ -24,6 +24,7 @@ export default {
     data() {
         return {
             isLoggedIn: false,
+            isOpen: false,
         };
     },
     computed: {
@@ -42,9 +43,11 @@ export default {
     methods: {
         handleLoginClick() {
             this.$emit('handleLoginClick');
+            this.isOpen = false;
         },
         handleRegisterClick() {
             this.$emit('handleRegisterClick');
+            this.isOpen = false;
         },
         checkAuthentication() {
             this.isLoggedIn = !!localStorage.getItem('authenticated');

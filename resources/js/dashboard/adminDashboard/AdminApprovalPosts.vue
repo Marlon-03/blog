@@ -49,18 +49,33 @@ export default {
     },
 
     methods: {
-        destroy(slug){
-            axios.delete('/api/posts/' + slug)
-            .then((response) => {
-                this.fetchPosts();
-                console.log(response);
-                console.log('Post deleted successfully');
-                this.$router.push({name: 'PostsList'});
-            }).catch((error) => {
-                console.log(error);
+        destroy(slug) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                axios.delete('/api/posts/' + slug)
+                    .then((response) => { 
+                    console.log(response);
+                    this.fetchAdminApprovalPosts(); // Fetch the updated list after deletion
+                    this.$router.push({name: 'AdminApprovalPosts'});
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your post has been deleted.",
+                        icon: "success"
+                    });
+                    }).catch((error) => {
+                    console.log(error);
+                    });
+                }
             });
         },
-
         getStatusText(status) {
             status = parseInt(status, 10);
                 switch (status) {
@@ -83,19 +98,40 @@ export default {
     },
     
     updatePostStatus(postId, status) {
-    axios.put(`/api/admin/posts/${postId}/status`, { status })
-        .then(() => {
+        axios.put(`/api/admin/posts/${postId}/status`, { status })
+            .then(() => {
             this.fetchAdminApprovalPosts();  // Refresh the post list
             console.log(this.getStatusText(status));  // Log the status message
-        })
-        .catch((error) => {
+
+            // Show a success message with SweetAlert2
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Post status updated successfully',
+            });
+            })
+            .catch((error) => {
             if (error.response && error.response.status === 422) {
                 console.error('Invalid status. Status must be 0, 1, or 2.');
+
+                // Show an error message with SweetAlert2
+                Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Invalid status. Status must be 0, 1, or 2.',
+                });
             } else {
                 console.error(error);
+
+                // Show a general error message with SweetAlert2
+                Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An error occurred while updating the post status',
+                });
             }
         });
-},
+    },
     }
 }
 </script>

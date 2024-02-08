@@ -28,7 +28,7 @@
         <br/>
 
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Post</button>
-        
+      
     </form>
   </div>
 </div>
@@ -51,6 +51,7 @@ export default {
           },
           url: '',
           categories: [],
+          validationErrors: null,
           }
   },
 
@@ -61,22 +62,45 @@ export default {
           this.url = URL.createObjectURL(file);
           URL.revokeObjectURL(file);
       },
-      submitPost(){
-        axios.post('/api/posts', this.posts,{
-            headers: {'Content-Type': 'multipart/form-data'}
-        })
-        .then(() =>{
-          this.posts = {};
-          this.url = null;
-          this.posts.category_id = '';
-          this.$refs.fileInput.value = ''; // Clear the file input
-          this.posts.body = ''; // Clear the Quill editor
-          console.log('Post created successfully');
-        }
-        ).catch((error) => {
-            console.log(error);
+      submitPost() {
+  axios.post('/api/posts', this.posts, {
+    headers: {'Content-Type': 'multipart/form-data'}
+  })
+  .then(() => {
+    this.posts = {};
+    this.url = null;
+    this.posts.category_id = '';
+    this.$refs.fileInput.value = ''; // Clear the file input
+    this.posts.body = ''; // Clear the Quill editor
+
+    // Show a success message with SweetAlert2
+    Swal.fire({
+      icon: 'success',
+      title: 'Success',
+      text: 'Post created successfully',
+    });
+  })
+  .catch(error => {
+    if (error.response && error.response.data && error.response.data.errors) {
+      this.validationErrors = error.response.data.errors;
+
+      // Show a validation error message with SweetAlert2
+      Swal.fire({
+        icon: 'error',
+        title: 'Validation Error',
+        text: 'Please correct the errors and try again.',
+        footer: '<ul>' + Object.values(this.validationErrors).map(error => `<li>${error}</li>`).join('') + '</ul>'
       });
-  },
+    } else {
+      // Show a general error message with SweetAlert2
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An error occurred while creating the post',
+      });
+    }
+  });
+},
 },
   mounted() {
         axios.get('/api/categories')
@@ -94,4 +118,5 @@ export default {
     max-width: 100%;
     max-height: 120px;
 }
+
 </style>
