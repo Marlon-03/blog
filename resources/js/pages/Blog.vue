@@ -34,7 +34,7 @@
         </div>
 
         <div class="cards-blog latest-blog flex flex-wrap justify-around px-3 py-3">
-  <router-link class="card-blog-content flex flex-col items-center bg-white rounded-lg lg:w-[300px] md:w-[230px] w-full sm:w-1/3 my-4" 
+  <router-link class="card-blog-content flex flex-col items-center bg-white rounded-lg xl:w-[350px] lg:w-[300px] md:w-[230px] w-full sm:w-1/3 my-4" 
                v-for="post in posts.slice(0, 6)" 
                :key="post.id"
                :to="{name: 'SingleBlog', params: {slug: post.slug}}">
