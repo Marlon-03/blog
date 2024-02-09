@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#F2F1E9]">
+  <div class="bg-[#F2F1E9] h-screen flex justify-center items-center">
   <div class="w-full flex justify-center items-center">
     <form @submit.prevent="submitPost" class="w-4/5 flex flex-col justify-center py-2 px-2 my-10 bg-white">
       <h1 class="font-istok-web font-bold text-center text-4xl">Create a post</h1>

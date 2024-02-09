@@ -1,5 +1,5 @@
 <template>
-      <div class="bg-[#F2F1E9] h-screen">
+      <div class="bg-[#F2F1E9] h-screen flex justify-center items-center">
     <div class=" px-10 py-10">
     <table class="table-fixed w-full bg-white">
         <thead>

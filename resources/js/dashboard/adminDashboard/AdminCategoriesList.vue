@@ -1,6 +1,6 @@
 <template>
 
-<div class="bg-[#F2F1E9] h-screen">
+<div class="bg-[#F2F1E9] h-screen flex justify-center items-center">
 <div class="mx-auto flex justify-center align-center items-center h-96">
   <table class="table-auto bg-white">
     <thead> 
