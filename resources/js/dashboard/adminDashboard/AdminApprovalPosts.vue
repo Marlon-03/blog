@@ -16,7 +16,7 @@
               <td class="border px-2 py-2">{{ post.title }}</td>
               <td class="border px-2 py-2 sm:table-cell hidden">{{ post.category.name }}</td>
               <td class="border px-2 py-2 sm:table-cell hidden">{{ post.created_at }}</td>
-              <td class="border px-2 py-2 text-xs md:text-sm">
+              <td class="border px-1 md:px-2 py-2 text-xs md:text-sm">
                 <select @change="updatePostStatus(post.id, $event.target.value)" :class="{'bg-red-300': post.status === 0, 'bg-yellow-300': post.status === 1, 'bg-green-500': post.status === 2}">
                   <option value="0" :selected="post.status === 0">Disapproved</option>
                   <option value="1" :selected="post.status === 1">Pending</option>
