@@ -10,21 +10,21 @@
 
     <div class="bg-[#F2F1E9] h-screen">
         <div class="md:grid md:grid-cols-3 flex flex-col px-5 gap-5 lg:gap-5 xl:gap-7 justify-items-center pt-10">
-        <router-link class="bg-[#58AB91] rounded-md min-w-[300px] min-h-[150px] flex items-center justify-center"  :to="{name: 'CreatePost'}">
+            <router-link class="bg-[#58AB91] rounded-md md:min-w-[200px] lg:min-h-[90px] lg:min-w-[250px] lg:min-h-[100px] xl:min-w-[300px] xl:min-h-[150px] flex items-center justify-center"   :to="{name: 'CreatePost'}">
             <div class="justify-center items-center flex-col flex px-4 py-8">
                 <img :src="writeIcon" class="w-10 h-10">
                 <p class="font-istok-web font-bold text-white text-2xl">Write a post</p>
             </div>
         </router-link>
 
-        <router-link class="bg-[#58AB91] rounded-md min-w-[300px] min-h-[150px] flex items-center justify-center"  :to="{name: 'ContributorCategoriesList'}">
+        <router-link class="bg-[#58AB91] rounded-md md:min-w-[200px] lg:min-h-[90px] lg:min-w-[250px] lg:min-h-[100px] xl:min-w-[300px] xl:min-h-[150px] flex items-center justify-center" :to="{name: 'ContributorCategoriesList'}">
             <div class="justify-center items-center flex-col flex px-4 py-8">
                 <img :src="notesIcon" class="w-10 h-10">
                 <p class="font-istok-web font-bold text-white text-2xl">Categories List</p>
             </div>
         </router-link>
 
-        <router-link class="bg-[#58AB91] rounded-md min-w-[300px] min-h-[150px] flex items-center justify-center"  :to="{name: 'PostsList'}">
+        <router-link class="bg-[#58AB91] rounded-md md:min-w-[200px] lg:min-h-[90px] lg:min-w-[250px] lg:min-h-[100px] xl:min-w-[300px] xl:min-h-[150px] flex items-center justify-center"  :to="{name: 'PostsList'}">
             <div class="justify-center items-center flex-col flex px-4 py-8">
                 <p class="font-istok-web font-bold text-white text-4xl">{{ postCount }}</p>
                 <p class="font-istok-web font-bold text-white text-2xl">Your posts</p>
