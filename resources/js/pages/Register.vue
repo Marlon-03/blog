@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 import EmailIcon from '../../../public/img/email.svg';
 import PersonIcon from '../../../public/img/person.svg';
 import PasswordIcon from '../../../public/img/password.svg';
@@ -70,14 +71,21 @@ export default {
             axios.post('/api/register', this.user)
                 .then(response => {
                     console.log('Response:', response.data);
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Registered successfully',
+                    })
                     this.$router.push({ name: 'Login' });
                 })
                 .catch(error => {
                     console.error('Error:', error);
 
-                    if (error.response && error.response.status === 422) {
-                        this.validationErrors = error.response.data.errors;
-                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                    });
                 });
         },
     },

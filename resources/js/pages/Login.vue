@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 import EmailIcon from '../../../public/img/email.svg';
 import PasswordIcon from '../../../public/img/password.svg';
 export default {
@@ -39,32 +40,46 @@ export default {
         };
     },
     methods:{
-    saveData() {
-        return axios.post('/api/login', this.user)
+        saveData() {
+      return axios.post('/api/login', this.user)
         .then(response => {
-    console.log('Response:', response.data);
+          console.log('Response:', response.data);
 
-    // Store the API token in local storage
-    localStorage.setItem('apiToken', response.data.api_token);
+          // Store the API token in local storage
+          localStorage.setItem('apiToken', response.data.api_token);
 
-    // Store the user's role in local storage
-    localStorage.setItem('userRole', response.data.role);
+          // Store the user's role in local storage
+          localStorage.setItem('userRole', response.data.role);
 
-    localStorage.setItem('authenticated', true);
-    this.$emit('showNavbar') // Emit the event
+          localStorage.setItem('authenticated', true);
+          this.$emit('showNavbar') // Emit the event
 
-    // Check the user's role and navigate to the appropriate dashboard
-    if (response.data.role === 'admin') {
-        this.$router.push({name: 'AdminDashboard'});
-    } else if (response.data.role === 'contributor') {
-        this.$router.push({name: 'Dashboard'});
+          // Show a success message
+          Swal.fire({
+            icon: 'success',
+            title: 'Logged in successfully',
+          });
+
+          // Check the user's role and navigate to the appropriate dashboard
+          if (response.data.role === 'admin') {
+            this.$router.push({name: 'AdminDashboard'});
+          } else if (response.data.role === 'contributor') {
+            this.$router.push({name: 'Dashboard'});
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+
+          // Show an error message
+          Swal.fire({
+            icon: 'error',
+            title: 'Username or password is incorrect',
+          });
+        });
+    },
+  },
     }
-})
-.catch(error => {
-    console.error('Error:', error);
-});
-    }}
-    }
+
 </script>
 
 <style scoped>
