@@ -1,5 +1,5 @@
 <template>
-<div class=" bg-[#F2F1E9]">
+<div class=" bg-[#F2F1E9] h-screen">
     <div class="py-10  max-w-custom mx-auto">
         <div class="flex flex-col sm:flex-row justify-around items-center bg-[#F2F1E9] pb-5 gap-y-4 sm:gap-y-0">
             <div></div>
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <div class="cards-blog latest-blog flex flex-wrap justify-around px-3 py-3">
+        <div class="cards-blog latest-blog flex flex-wrap justify-around px-3 py-3 ">
   <router-link class="card-blog-content flex flex-col items-center bg-white rounded-lg xl:w-[350px] lg:w-[300px] md:w-[230px] w-full sm:w-1/3 my-4" 
                v-for="post in posts.slice(0, 6)" 
                :key="post.id"

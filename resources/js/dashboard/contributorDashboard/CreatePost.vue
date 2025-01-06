@@ -75,11 +75,14 @@ export default {
 
     // Show a success message with SweetAlert2
     Swal.fire({
-      icon: 'success',
-      title: 'Success',
-      text: 'Post created successfully',
-    });
-  })
+        icon: 'success',
+        title: 'Success',
+        text: 'Post created successfully',
+      }).then(() => {
+        // Redirect to the dashboard
+        this.$router.push({ name: 'Dashboard' });
+      });
+    })
   .catch(error => {
     if (error.response && error.response.data && error.response.data.errors) {
       this.validationErrors = error.response.data.errors;
