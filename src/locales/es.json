@@ -1,0 +1,19 @@
+{
+    "dashboard": {
+      "greeting": "Hola, Colaborador {name}",
+      "logout": "Cerrar sesión",
+      "writePost": "Escribir una publicación",
+      "categoriesList": "Lista de categorías",
+      "yourPosts": "Tus publicaciones"
+    },
+
+    "navbar": {
+    "home": "Accueil",
+    "blog": "Blog",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Se connecter",
+    "register": "S'inscrire",
+    "dashboard": "Tableau de bord"
+  }
+  }
