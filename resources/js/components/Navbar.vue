@@ -5,18 +5,18 @@
         <img src="../../img/vite.png" alt="Logo" class="h-10 w-10" />
       </div>
       <button @click="isOpen = !isOpen" class="lg:hidden">
-        <img :src="hamburgerIcon" class="absolute w-7 h-7 ml-1">
+          <img :src="hamburgerIcon" class="absolute w-7 h-7 ml-1">
       </button>
       <div v-if="isOpen || isLargeScreen" class="lg:flex hidden space-x-10 text-white font-semibold text-xl">
-        <router-link :to="{name: 'Home'}">{{ $t('navbar.home') }}</router-link>
-        <router-link :to="{name: 'Blog'}">{{ $t('navbar.blog') }}</router-link>
-        <router-link :to="{name: 'About'}">{{ $t('navbar.about') }}</router-link>
-        <router-link :to="{name: 'Contact'}">{{ $t('navbar.contact') }}</router-link>
+        <router-link :to="{name: 'Home'}">Home</router-link>
+        <router-link :to="{name: 'Blog'}">Blog</router-link>
+        <router-link :to="{name: 'About'}">About</router-link>
+        <router-link :to="{name: 'Contact'}">Contact</router-link>
       </div>
       <div v-if="isOpen || isLargeScreen" class="lg:flex hidden space-x-10 text-white font-semibold text-xl">
-        <router-link :to="{name: 'Login'}" v-if="!isLoggedIn" @click="handleLoginClick">{{ $t('navbar.login') }}</router-link>
-        <router-link :to="{name: 'Register'}" v-if="!isLoggedIn" @click="handleRegisterClick">{{ $t('navbar.register') }}</router-link>
-        <router-link :to="{name: 'Dashboard'}" v-if="isLoggedIn">{{ $t('navbar.dashboard') }}</router-link>
+        <router-link :to="{name: 'Login'}" v-if="!isLoggedIn" @click="handleLoginClick">Log In</router-link>
+        <router-link :to="{name: 'Register'}" v-if="!isLoggedIn" @click="handleRegisterClick">Register</router-link>
+        <router-link :to="{name: 'Dashboard'}" v-if="isLoggedIn">Dashboard</router-link>
       </div>
     </div>
   </div>
@@ -31,6 +31,7 @@ export default {
       isLoggedIn: false,
       isOpen: false,
       isLargeScreen: window.innerWidth > 768,
+
     };
   },
   computed: {
@@ -68,3 +69,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+</style>

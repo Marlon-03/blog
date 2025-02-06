@@ -4,14 +4,14 @@
   <table class="table-auto bg-white">
     <thead> 
       <tr>
-        <th class="border px-4 py-2">ID</th>
-        <th class="border px-4 py-2">Name</th>
+        <th class="border p-6">ID</th>
+        <th class="border p-6">Name</th>
       </tr>
     </thead>
     <tbody v-for="(category, index) in categories" :key="category.id" :class="index % 2 ? 'bg-green-100' : 'bg-white'" class="text-center">
       <tr>
-        <td class="border px-4 py-2">{{category.id}}</td>
-        <td class="border px-4 py-2">{{category.name}}</td>
+        <td class="border p-6">{{category.id}}</td>
+        <td class="border p-6">{{category.name}}</td>
       </tr>
     </tbody>
   </table>

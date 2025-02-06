@@ -1,35 +1,32 @@
 <template>
-    <div>
-      <Navbar v-if="shouldShowNavbar" @handleLoginClick="handleLoginClick" @handleRegisterClick="handleRegisterClick" />
-      <LanguageSwitcher />
-      <router-view @showNavbar="showNavbar" :key="$route.path"/>
-    </div>
+  <div>
+    <Navbar v-if="shouldShowNavbar" @handleLoginClick="handleLoginClick" @handleRegisterClick="handleRegisterClick" />
+    <router-view @showNavbar="showNavbar" :key="$route.path"/>
+  </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue';
-import LanguageSwitcher from './components/LanguageSwitcher.vue';
 export default {
-    components: {
-      Navbar,
-      LanguageSwitcher,
+  components: {
+    Navbar,
+  },
+  data() {
+    return {
+      shouldShowNavbar: true,
+    };
+  },
+  methods: {
+    handleLoginClick() {
+      this.shouldShowNavbar = false;
     },
-    data() {
-      return {
-        shouldShowNavbar: true,
-      };
+    handleRegisterClick() {
+      this.shouldShowNavbar = false;
     },
-    methods: {
-      handleLoginClick() {
-        this.shouldShowNavbar = false;
-      },
-      handleRegisterClick() {
-        this.shouldShowNavbar = false;
-      },
-      showNavbar() {
-        this.shouldShowNavbar = true;
-      },
+    showNavbar() {
+      this.shouldShowNavbar = true;
     },
+  },
 };
 </script>
 

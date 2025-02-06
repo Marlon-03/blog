@@ -1,30 +1,30 @@
 <template>
 <div class="bg-[#F2F1E9] h-screen flex justify-center items-center">
-    <div class=" px-10 py-10">
-    <table class="table-fixed w-full bg-white">
+    <div class=" px-10 py-10 ">
+    <table class="table-fixed w-full bg-white ">
         <thead>
             <tr>
-                <th class="border px-2 py-2">Title</th>
-                <th class="border px-2 py-2 sm:table-cell hidden">Category</th>
-                <th class="border px-2 py-2 sm:table-cell hidden">Created At</th>
-                <th class="border px-2 py-2">Status</th>
-                <th class="border px-2 py-2">Action</th>
+                <th class="border px-2 py-5">Title</th>
+                <th class="border px-2 py-5 sm:table-cell hidden">Category</th>
+                <th class="border px-2 py-5 sm:table-cell hidden">Created At</th>
+                <th class="border px-2 py-5">Status</th>
+                <th class="border px-2 py-5">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="(post, index) in posts" :key="post.id" :class="index % 2 ? 'bg-green-100' : 'bg-white'" class="text-center">
-                <td class="border px-2 py-2">{{ post.title }}</td>
-                <td class="border px-2 py-2 sm:table-cell hidden">{{ post.category.name }}</td>
-                <td class="border px-2 py-2 sm:table-cell hidden">{{ post.created_at }}</td>
-                <td class="border px-1 md:px-2 py-2 text-xs md:text-sm">
-                    <span class="px-2" :class="{'bg-red-300': post.status === 0, 'bg-yellow-300': post.status === 1, 'bg-green-500': post.status === 2}">
+                <td class="border px-2 py-6">{{ post.title }}</td>
+                <td class="border px-2 py-6 sm:table-cell hidden">{{ post.category.name }}</td>
+                <td class="border px-2 py-6 sm:table-cell hidden">{{ post.created_at }}</td>
+                <td class="border px-1 md:px-2 py-6 text-xs md:text-sm">
+                    <span class="p-2 rounded-lg" :class="{'bg-red-300': post.status === 0, 'bg-yellow-300': post.status === 1, 'bg-green-500': post.status === 2}">
                         {{ getStatusText(post.status) }}
                     </span>
                 </td>
-                <td class="border px-2 py-2">
+                <td class="border px-2 py-6">
                     <div class="gap-2 flex justify-center">
-                    <router-link :to="{name: 'EditPosts', params: {slug: post.slug}}" class="bg-yellow-500 text-xs md:text-sm md:px-2 md:px-2 px-1 py-1 text-center rounded-md">Edit</router-link>
-                    <button @click="destroy(post.slug)" class="bg-red-500 text-xs md:text-sm md:px-2 md:px-2 px-1 py-1 rounded-md">Delete</button>
+                    <router-link :to="{name: 'EditPosts', params: {slug: post.slug}}" class="bg-yellow-500 text-xs md:text-sm p-2 md:p-2  text-center rounded-md">Edit</router-link>
+                    <button @click="destroy(post.slug)" class="bg-red-500 text-xs md:text-sm p-2 md:p-2 rounded-md">Delete</button>
                 </div>
                 </td>
             </tr>

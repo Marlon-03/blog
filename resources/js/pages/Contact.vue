@@ -26,7 +26,7 @@
 
                     <div class="relative flex w-full items-center">
                         <img :src="emailIcon" class="absolute w-5 h-5 md:w-7 md:h-7 ml-1">
-                        <p class="p-2 pl-10 font-normal md:font-medium">marlonmovilla23@gmail.com</p>
+                        <p class="p-2 pl-10 font-normal md:font-medium">marlonmovilla03@gmail.com</p>
                     </div>
 
                     <div class="relative flex w-full items-center">
